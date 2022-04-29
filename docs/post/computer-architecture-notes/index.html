@@ -1,0 +1,3771 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Notes on studying &#34;Computer Architecture&#34; offered by Peking University on Coursera.com.'><title>Computer Architecture Notes</title>
+
+<link rel='canonical' href='https://crap.hongb.in/post/computer-architecture-notes/'>
+
+<link rel="stylesheet" href="/scss/style.min.d9e0562edde3d2bdf9d3d81365095a29d062ddaaa5d671f22168e57dfdb18b4f.css"><meta property='og:title' content='Computer Architecture Notes'>
+<meta property='og:description' content='Notes on studying &#34;Computer Architecture&#34; offered by Peking University on Coursera.com.'>
+<meta property='og:url' content='https://crap.hongb.in/post/computer-architecture-notes/'>
+<meta property='og:site_name' content='Yana!'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Computer Architecture' /><meta property='article:published_time' content='2022-03-14T20:45:48&#43;08:00'/><meta property='article:modified_time' content='2022-04-29T22:24:34&#43;08:00'/><meta property='og:image' content='https://crap.hongb.in/post/computer-architecture-notes/cover.jpg' />
+<meta name="twitter:title" content="Computer Architecture Notes">
+<meta name="twitter:description" content="Notes on studying &#34;Computer Architecture&#34; offered by Peking University on Coursera.com."><meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content='https://crap.hongb.in/post/computer-architecture-notes/cover.jpg' />
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="Toggle Menu">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu5c8699c965650722a4831ee80ae1dc93_15518_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">🧊</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">Yana!</a></h1>
+            <h2 class="site-description">No description of one being.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/Yana-Hangabina'
+                        target="_blank"
+                        title="GitHub"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>Search</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>Dark Mode</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+<main class="main full-width">
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <a href="/post/computer-architecture-notes/">
+                <img src="/post/computer-architecture-notes/cover_huad24c60f3de9c0b9f5f96d6417dfa61d_108328_800x0_resize_q75_box.jpg"
+                        srcset="/post/computer-architecture-notes/cover_huad24c60f3de9c0b9f5f96d6417dfa61d_108328_800x0_resize_q75_box.jpg 800w, /post/computer-architecture-notes/cover_huad24c60f3de9c0b9f5f96d6417dfa61d_108328_1600x0_resize_q75_box.jpg 1600w"
+                        width="800" 
+                        height="1001" 
+                        loading="lazy"
+                        alt="Featured image of post Computer Architecture Notes" />
+                
+            </a>
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/notes/" style="background-color: #2a9d8f; color: #fff;">
+                Notes
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/post/computer-architecture-notes/">Computer Architecture Notes</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Notes on studying &#34;Computer Architecture&#34; offered by Peking University on Coursera.com.
+        </h3>
+        
+    </div>
+
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">Mar 14, 2022</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    23 minute read
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="第一讲--计算机基本结构basic-components-of-a-computer">第一讲  计算机基本结构（Basic Components of a Computer）</h2>
+<blockquote>
+<p>内容要点：冯·诺伊曼结构，计算机执行指令的过程</p>
+</blockquote>
+<h3 id="11-电子计算机的兴起现代电子计算机之父冯诺依曼">1.1 电子计算机的兴起——“现代电子计算机之父”冯·诺依曼</h3>
+<ul>
+<li><em>1939年，艾奥瓦州立大学，约翰·阿塔纳索夫、克利夫·贝里，ABC计算机</em></li>
+<li>1946年2月14日，美国宾夕法尼亚大学，约翰·莫克利、约翰·埃克特，世界上第一台<strong>通用</strong>电子计算机ENIAC*（Electronic Numerical Integrator And Computer，电子数字积分器和机算器，18000个电子管、十进制、每秒5000次加法、150千瓦、170平方米、30吨、50万美元）*
+<ul>
+<li>冯·诺依曼对ENIAC的分析：ENIAC的开关定位和转插线只不过代表着一些数字信息，完全可以像受程序管理的数据一样，存放于主存储器中。（<strong>“存储程序”的概念</strong>）</li>
+<li>1945年6月30日，冯·诺依曼《关于EDVAC的报告草案》<em>（美国陆军军械部-宾夕法尼亚大学摩尔电机工程学院）</em>：该报告所描述的计算机结构，即为“冯·诺依曼计算机结构”
+<ul>
+<li>1949年5月6日，英国剑桥大学数学实验室，莫里斯·威尔克斯，以EDVAC为蓝本设计和建造的EDSAC（Electronic Delay Storage Automatic Calculator，电子延迟储存自动计算机）：第一台<strong>实用的</strong>储存程序式计算机
+<ul>
+<li>五个组成部分：
+<ul>
+<li>运算器和控制器：电子管</li>
+<li>存储器：水银延迟线</li>
+<li>输入设备：从穿孔纸带输入</li>
+<li>输出设备：电传打印机</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>1949年8月交付的EDVAC*（Electronic Discrete Variable Automatic Computer，离散变量电子计算机）*的主要特点：
+<ul>
+<li>实现“存储程序”概念，大幅提升了任务效率</li>
+<li>指令和数据采用二进制，极大简化了逻辑线路</li>
+<li>由五个基本部分组成：运算器，控制器，存储器、输入设备，输出设备</li>
+</ul>
+</li>
+<li>1951年，计开始于埃克特-莫克利计算机公司（EMCC）完成于雷明顿·兰德公司（Remington Rand）的UNIVAC*（UNIVersal Automatic Computer，每秒10万次加法，主频2.25MHz）*交付美国人口普查局
+<ul>
+<li>1952年，UNIVAC统计选票率先准确预测艾森·豪威尔赢得选举，因此和电子计算机获得了广泛的关注</li>
+<li>UNIVAC：开启了商用计算机的时代
+<ul>
+<li>1950年代，众多公司进入电子计算机领域</li>
+<li>1953年，IBM成功转型，推出大型计算机IBM701</li>
+<li>1955年，IBM占领了70％的市场（“IBM和七个小矮人”：Burroughs，Sperry Rand(UNIVAC)， CDC，Honeywell，GE，RCA，NCR）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="12-冯诺依曼结构的要点">1.2 冯·诺依曼结构的要点</h3>
+<ul>
+<li>
+<p>冯·诺依曼和《关于EDVAC的报告草案》</p>
+<p><img src="/post/computer-architecture-notes/6msLR24WavgD9Pr.png"
+	width="733"
+	height="607"
+	srcset="/post/computer-architecture-notes/6msLR24WavgD9Pr_huaa887151170aeb5e106368f4ce23ccc2_501428_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/6msLR24WavgD9Pr_huaa887151170aeb5e106368f4ce23ccc2_501428_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="120"
+		data-flex-basis="289px"
+	
+></p>
+<ul>
+<li>长度101页，未完成稿</li>
+<li>论述了<strong>两个重要设计思想</strong>
+<ul>
+<li><strong>存储程序</strong>（而不是开关连线）</li>
+<li><strong>二进制</strong>（而不是十进制：导致计算机内部结构异常复杂）</li>
+</ul>
+</li>
+<li>明确了<strong>计算机的五个部分：运算器、控制器、储存器、输入设备、输出设备</strong></li>
+</ul>
+</li>
+<li>
+<p>1971年，世界上第一个商业微处理器Intel 4004</p>
+<ul>
+<li>
+<p>面积：4.2mmx3.2mm</p>
+</li>
+<li>
+<p>制造工艺：10微米</p>
+</li>
+<li>
+<p>晶体管数量：2250</p>
+</li>
+<li>
+<p>主频：最高740KHz，性能与ENIAC相当</p>
+</li>
+<li>
+<p>字长：4位</p>
+</li>
+<li>
+<p>1971年最初用于计算器Busicom 141-PF</p>
+<ul>
+<li>MCS-4（Micro Computer Set）芯片组
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th><img src="/post/computer-architecture-notes/Hz7LiyaYWj1TtEc.png"
+	width="786"
+	height="718"
+	srcset="/post/computer-architecture-notes/Hz7LiyaYWj1TtEc_hub774e6af56e3ab99c3b71973c4b68ac2_742346_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/Hz7LiyaYWj1TtEc_hub774e6af56e3ab99c3b71973c4b68ac2_742346_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="109"
+		data-flex-basis="262px"
+	
+></th>
+<th><img src="/post/computer-architecture-notes/9oL6MSidrbEuINA.png"
+	width="2107"
+	height="828"
+	srcset="/post/computer-architecture-notes/9oL6MSidrbEuINA_hu0bb7fad633969cd31827292e03398c9a_1533172_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/9oL6MSidrbEuINA_hu0bb7fad633969cd31827292e03398c9a_1533172_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="254"
+		data-flex-basis="610px"
+	
+></th>
+</tr>
+</thead>
+</table></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>冯·诺依曼结构的要点</strong></p>
+<ul>
+<li>
+<p>计算机的五大组成部分</p>
+<ol>
+<li>运算器，CA：central arithmetical</li>
+<li>控制器，CC：central control</li>
+<li>存储器，M：memory</li>
+<li>输入设备，I：input</li>
+<li>输出设备，O：output</li>
+</ol>
+</li>
+<li>
+<p><strong>数据和程序</strong>均以<strong>二进制代码</strong>形式不加区别地<strong>存放在存储器</strong>中，存放位置由存储器的地址指定</p>
+<ul>
+<li>
+<p>冯·诺依曼结构的核心</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>冯·诺依曼结构</th>
+<th>现代计算机</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>运算器CA和控制器CC，合称C</td>
+<td>CPU（Central Processing Unit）</td>
+</tr>
+<tr>
+<td>存储器M</td>
+<td>主存储器（主存、内存）</td>
+</tr>
+</tbody>
+</table></div>
+<img src="LZikp2o6WrjTV1C.png" alt="image-20220317223723540" style="zoom:25%;" />
+<ul>
+<li>主存的组织形式：地址（二进制，每个储存单元对应的序号）+内容（二进制，储存单元中存放的信息，1个存储单元1个字节/8位）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>计算机在工作时能够<strong>自动</strong>地从存储器中<strong>取出指令</strong>加以执行</p>
+<p><img src="/post/computer-architecture-notes/gXfnztG5MkiapxK.png"
+	width="1255"
+	height="536"
+	srcset="/post/computer-architecture-notes/gXfnztG5MkiapxK_hu5b2eab9773ff41d989f6aa935fd5ccd2_348378_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/gXfnztG5MkiapxK_hu5b2eab9773ff41d989f6aa935fd5ccd2_348378_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="234"
+		data-flex-basis="561px"
+	
+></p>
+<ul>
+<li>执行指令：计算机运转的核心内容
+<ul>
+<li>主要步骤：<strong>取指（Fetch）→译码（Decode）→执行（Execute）→回写（Write-back）</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="13-计算机结构的简化模型模型机">1.3 计算机结构的简化模型（模型机）</h3>
+<p><img src="/post/computer-architecture-notes/eqDFmzP5ZgIQNjn.png"
+	width="1140"
+	height="726"
+	srcset="/post/computer-architecture-notes/eqDFmzP5ZgIQNjn_hu3c21bb8ee79fba8b39278a16322c298d_556012_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/eqDFmzP5ZgIQNjn_hu3c21bb8ee79fba8b39278a16322c298d_556012_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="157"
+		data-flex-basis="376px"
+	
+></p>
+<ul>
+<li>存储器
+<ul>
+<li>存储单元的位宽：由编址方法确定（按字节编址，每个储存单元存放8位二进制数）</li>
+<li>存储单元的地址：唯一的，不同存储单元地址互不相同</li>
+<li>地址总线：宽度为$n$，CPU能管理的存储单元最多$2^n$个（32位宽地址总线，内存最多4G）
+<ul>
+<li>MAR：Memory Address Register，用于存放CPU正在读或写的存储单元的地址</li>
+</ul>
+</li>
+<li>数据总线：宽度一般为存储单元位宽的整数倍
+<ul>
+<li>MDR：Memory Data Register，用于存放CPU正在读出或即将写入存储单元的数据</li>
+</ul>
+</li>
+<li>控制总线：传输读、写、完成等控制信号</li>
+</ul>
+</li>
+<li>CPU
+<ul>
+<li>控制器：用于控制计算机各部件完成取指令、分析指令和执行指令等功能
+<ol>
+<li>指令寄存器IR：Instruction Register，存放正在执行或者即将执行的指令</li>
+<li>程序计数器PC：Program Counter：存放下一条指令的存储单元<strong>地址</strong>，具有自动增量计数的功能</li>
+<li>存储器地址寄存器MAR：Memory Address Register，在访存时用于存放存储单元的地址</li>
+<li>存储器数据寄存器MDR：Memory Data Register，在访存时用于存放对存储单元读/写的数据</li>
+<li>指令译码部件：对IR中的指令进行译码，已确定IR中存放的是哪一条指令</li>
+<li>控制电路：产生控制信号，在时序脉冲的同步下控制各个部件的动作</li>
+</ol>
+</li>
+<li>运算器：用于算术运算和逻辑运算（常见算术运算：加、减、乘、除等；常见逻辑运算：非、与、或等）
+<ul>
+<li>ALU：算术逻辑单元，核心部件，用于完成算术运算和逻辑运算
+<ul>
+<li>ALU对X、Y中的数据进行运算，将结果送到Z。X、Y、Z作为ALU的数据暂存器，可视为ALU的一部分</li>
+</ul>
+</li>
+<li>F：标志寄存器，用于存放运算结果的状态（零/正负/进位/溢出）</li>
+<li>$R_0$~$R_{n-1}$：n个通用寄存器，用于临时存放数据。数据可能来自存储器，也可能来自其他通用寄存器或ALU的输出</li>
+</ul>
+</li>
+<li>内部总线：在CPU各个部件之间传递数据</li>
+</ul>
+</li>
+</ul>
+<h3 id="14-计算机执行指令的过程">1.4 计算机执行指令的过程</h3>
+<ul>
+<li>
+<p>执行指令的示例</p>
+<ul>
+<li>
+<p>指令格式：<code>ADD $R_0$, [6]</code></p>
+</li>
+<li>
+<p>指令功能：通用寄存器$R_0$的内容<code>+</code>地址为6的储存单元的内容<code>=</code>运算结果</p>
+<p>　　　　<u>↑</u><em><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><strong><u>更新</u></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></strong></em>_<u>↓</u></p>
+</li>
+<li>
+<p>假设模型机当前状态：</p>
+<p><img src="/post/computer-architecture-notes/XCL1fdjSe8l3mPI.png"
+	width="1189"
+	height="678"
+	srcset="/post/computer-architecture-notes/XCL1fdjSe8l3mPI_hucf5aaa0670aa8b76462f9fd33e3948be_606536_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/XCL1fdjSe8l3mPI_hucf5aaa0670aa8b76462f9fd33e3948be_606536_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="175"
+		data-flex-basis="420px"
+	
+></p>
+</li>
+<li>
+<p>执行过程：</p>
+<ul>
+<li>
+<p>取指</p>
+<ul>
+<li>
+<p>控制器将指令的地址送往存储器：控制器发出控制信号将PC寄存器中的内容通过内部总线传送到MAR中（MAR寄存器：0001）→MAR将这个地址送到地址总线上，控制电路同时在控制总线上发出读操作的控制信号→存储器的MAR寄存器收到地址总线上传送来的地址并保存，存储器中的控制逻辑收到控制总线中传送来的读操作控制信号</p>
+<p><img src="/post/computer-architecture-notes/d2qLbvKkeIY7Ajx.png"
+	width="438"
+	height="81"
+	srcset="/post/computer-architecture-notes/d2qLbvKkeIY7Ajx_huf86d25977edd186aeca6099bcc6a1d6a_33411_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/d2qLbvKkeIY7Ajx_huf86d25977edd186aeca6099bcc6a1d6a_33411_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="540"
+		data-flex-basis="1297px"
+	
+></p>
+<p><img src="/post/computer-architecture-notes/RrOGLTmNnQpwu8g.png"
+	width="560"
+	height="315"
+	srcset="/post/computer-architecture-notes/RrOGLTmNnQpwu8g_hudf06efcb63e0738563737e6d935162a1_218913_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/RrOGLTmNnQpwu8g_hudf06efcb63e0738563737e6d935162a1_218913_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="426px"
+	
+></p>
+</li>
+<li>
+<p>存储器按给定的地址读出指令内容，送回控制器：存储器通过地址译码器 查找到对应地址001的存储单元的内容，并将该存储单元的内容送到MDR寄存器中→存储器的控制逻辑通过控制总线向CPU反馈当前的传输已经准备好了， 同时MDR中的内容送数据总线上→CPU中的控制电路检测到来自控制总线的准备好的ready信号，MDR寄存器就会将当前数据总线上传送来的数值保存下来→MDR将内容传送到IR寄存器→更新PC寄存器为下一条指令的地址</p>
+<p><img src="/post/computer-architecture-notes/E2lA3ByixvDdQ1J.png"
+	width="473"
+	height="319"
+	srcset="/post/computer-architecture-notes/E2lA3ByixvDdQ1J_hu2dfec19abc58cb955f16e815583babe7_179589_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/E2lA3ByixvDdQ1J_hu2dfec19abc58cb955f16e815583babe7_179589_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="148"
+		data-flex-basis="355px"
+	
+></p>
+<p><img src="/post/computer-architecture-notes/o7w3ach4FPAqKdU.png"
+	width="570"
+	height="432"
+	srcset="/post/computer-architecture-notes/o7w3ach4FPAqKdU_huf0a2d0464305a21f094bb48fe6096be7_283497_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/o7w3ach4FPAqKdU_huf0a2d0464305a21f094bb48fe6096be7_283497_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="131"
+		data-flex-basis="316px"
+	
+></p>
+<p><img src="/post/computer-architecture-notes/kDJG5rCm21wlEfF.png"
+	width="423"
+	height="161"
+	srcset="/post/computer-architecture-notes/kDJG5rCm21wlEfF_hu010ceaa6e1a96ac57eb9be6101259ad9_84463_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/kDJG5rCm21wlEfF_hu010ceaa6e1a96ac57eb9be6101259ad9_84463_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="262"
+		data-flex-basis="630px"
+	
+></p>
+<p><img src="/post/computer-architecture-notes/rXOqlkA4p5dDBQz.png"
+	width="284"
+	height="50"
+	srcset="/post/computer-architecture-notes/rXOqlkA4p5dDBQz_hu4c66bdcfbc24fdd00f1be6f6a23a5425_18027_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/rXOqlkA4p5dDBQz_hu4c66bdcfbc24fdd00f1be6f6a23a5425_18027_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="568"
+		data-flex-basis="1363px"
+	
+></p>
+</li>
+</ul>
+</li>
+<li>
+<p>译码</p>
+<ul>
+<li>
+<p>控制器分析指令的操作性质：IR寄存器将指令编码送至指令译码部件</p>
+<p><img src="/post/computer-architecture-notes/DQeiCKpbO6n3Ru2.png"
+	width="277"
+	height="172"
+	srcset="/post/computer-architecture-notes/DQeiCKpbO6n3Ru2_hu6b471a35c916cb71eceb1ab1c8c36f7c_64395_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/DQeiCKpbO6n3Ru2_hu6b471a35c916cb71eceb1ab1c8c36f7c_64395_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="161"
+		data-flex-basis="386px"
+	
+></p>
+</li>
+<li>
+<p>控制器向有关部件发出指令所需的控制信号：译码部件翻译出指令后，控制电路产生相应的控制信号，发送到相关部件中</p>
+<p><img src="/post/computer-architecture-notes/wzcnGaeQxjqkYR4.png"
+	width="364"
+	height="186"
+	srcset="/post/computer-architecture-notes/wzcnGaeQxjqkYR4_hu8a2413120571293a8b2baa52e668c885_68962_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/wzcnGaeQxjqkYR4_hu8a2413120571293a8b2baa52e668c885_68962_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="195"
+		data-flex-basis="469px"
+	
+></p>
+</li>
+</ul>
+</li>
+<li>
+<p>执行</p>
+<ul>
+<li>
+<p>控制器从通用寄存器或存储器取出操作数：控制器在MAR中放置要访问的存储器的地址0110，进行类似于取指阶段的操作→控制器将MDR中的数据暂存到Y寄存器中→控制器将$R_0$的数据传送到X寄存器中</p>
+<p><img src="/post/computer-architecture-notes/4fG7HRTAFi83cKB.png"
+	width="443"
+	height="308"
+	srcset="/post/computer-architecture-notes/4fG7HRTAFi83cKB_hu89659fea623ba154be327f38b1410644_125493_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/4fG7HRTAFi83cKB_hu89659fea623ba154be327f38b1410644_125493_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="143"
+		data-flex-basis="345px"
+	
+></p>
+<p><img src="/post/computer-architecture-notes/lue7oMDijw2XKkR.png"
+	width="858"
+	height="503"
+	srcset="/post/computer-architecture-notes/lue7oMDijw2XKkR_hu966cfc8b1650977575d2a2c2fce4ebb6_491132_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/lue7oMDijw2XKkR_hu966cfc8b1650977575d2a2c2fce4ebb6_491132_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="170"
+		data-flex-basis="409px"
+	
+></p>
+<p><img src="/post/computer-architecture-notes/image-20220422170625642.png"
+	width="434"
+	height="237"
+	srcset="/post/computer-architecture-notes/image-20220422170625642_hu2f1a48bf8b36b3ca8964d661bcdbf6de_111269_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/image-20220422170625642_hu2f1a48bf8b36b3ca8964d661bcdbf6de_111269_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="183"
+		data-flex-basis="439px"
+	
+></p>
+</li>
+<li>
+<p>控制器命令运算器对操作数进行指令规定的运算：控制电路命令ALU将X、Y中的内容执行加法并计算出结果</p>
+<p><img src="/post/computer-architecture-notes/bQqfVBU6OLIYdKF.png"
+	width="378"
+	height="271"
+	srcset="/post/computer-architecture-notes/bQqfVBU6OLIYdKF_hu79154e2a9d36b9dd24b9e3b39f193ea0_98384_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/bQqfVBU6OLIYdKF_hu79154e2a9d36b9dd24b9e3b39f193ea0_98384_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="139"
+		data-flex-basis="334px"
+	
+></p>
+</li>
+</ul>
+</li>
+<li>
+<p>回写：控制电路发出控制信号将Z寄存器当中的内容传送到$R_0$中，覆盖原来的内容</p>
+<p><img src="/post/computer-architecture-notes/eHRjgM5iS3TmNLw.png"
+	width="432"
+	height="378"
+	srcset="/post/computer-architecture-notes/eHRjgM5iS3TmNLw_hu16c1859f7e73997942b9816b5ec1cec5_148600_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/eHRjgM5iS3TmNLw_hu16c1859f7e73997942b9816b5ec1cec5_148600_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="114"
+		data-flex-basis="274px"
+	
+></p>
+</li>
+<li>
+<p>继续执行下一条指令</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="15-计算机输入和输出">1.5 计算机输入和输出</h3>
+<ul>
+<li>
+<p>外部记录介质，R：outside recording medium</p>
+</li>
+<li>
+<p>模型机上的输入输出设备</p>
+<p><img src="/post/computer-architecture-notes/W8Ft59gyuKN2UiD.png"
+	width="1774"
+	height="995"
+	srcset="/post/computer-architecture-notes/W8Ft59gyuKN2UiD_hu99bd778978fe54913a18745158138bde_1205882_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/W8Ft59gyuKN2UiD_hu99bd778978fe54913a18745158138bde_1205882_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="178"
+		data-flex-basis="427px"
+	
+></p>
+</li>
+<li>
+<p>现代个人计算机的输入输出</p>
+<ul>
+<li>
+<p>南桥芯片内部包含磁盘键盘、鼠标、音频、网络和USB等多种输入输出设备或接口的控制器</p>
+<details>
+<summary>南北桥的演变</summary>
+<blockquote>
+<p>传统来说，主板上两个主要芯片，靠上方的叫北桥，靠下方的叫南桥。</p>
+<p>大体上说：北桥负责与CPU通信，并且连接高速设备（内存/显卡），并且与南桥通信；南桥负责与低速设备（硬盘/USB）通信，时钟/BIOS/系统管理/旧式设备控制，并且与北桥通信。</p>
+<p>Intel从第一代Core i7 (i7 9xx)开始，将原属于北桥功能的内存控制器整合到CPU当中，在主流机Core i中(i7 8xx)更将PCI-e控制器（主要负责连接显卡）整合到CPU当中，这时候传统意义上的北桥的所有功能都已经整合到CPU内部了，所以Intel 50系芯片“组”（X58除外，这是搭配i7 9xx用的，还有北桥）已经没有传统意义的北桥了，而南桥依然负责处理低速设备（SATA/USB/PCI等）、时钟等功能。由于只剩下一个芯片了，也没有“芯片组”的说法了，只剩下孤零零的PCH (Platform Controller Hub)。</p>
+<p>AMD平台的发展轨迹类似，在K8架构（第一代AMD64处理器）开始就把内存控制器集成到CPU内部，后来先是APU再是桌面的FX系列，陆陆续续把PCI-e控制器也整合到CPU中，也剩下孤零零的FCH (Fusion Controller Hub)……</p>
+<p>于是这两家的南桥（PCH/FCH）现在差不多变成了一个PCI-e Hub了……</p>
+</blockquote>
+</details>
+</li>
+<li>
+<p>部分性能要求高或者用途特殊的输入输出接口采用独立芯片或板卡的形式</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="16-冯诺依曼结构的具体实现">1.6 冯·诺依曼结构的具体实现</h3>
+<ul>
+<li>
+<p>南北桥架构的演变</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th><img src="/post/computer-architecture-notes/ymp14KFd3a8EjM5.png"
+	width="789"
+	height="983"
+	srcset="/post/computer-architecture-notes/ymp14KFd3a8EjM5_huf9e93681677c60a19d7e81167da89e77_333161_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/ymp14KFd3a8EjM5_huf9e93681677c60a19d7e81167da89e77_333161_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="80"
+		data-flex-basis="192px"
+	
+></th>
+<th>→</th>
+<th><img src="/post/computer-architecture-notes/ymp14KFd3a8EjM5-165124161406822.png"
+	width="789"
+	height="983"
+	srcset="/post/computer-architecture-notes/ymp14KFd3a8EjM5-165124161406822_huf9e93681677c60a19d7e81167da89e77_333161_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/ymp14KFd3a8EjM5-165124161406822_huf9e93681677c60a19d7e81167da89e77_333161_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="80"
+		data-flex-basis="192px"
+	
+></th>
+<th>→</th>
+<th><img src="/post/computer-architecture-notes/gb9BwnEq16SFzP4.png"
+	width="569"
+	height="714"
+	srcset="/post/computer-architecture-notes/gb9BwnEq16SFzP4_hud105e16569e23a3b9c1a947e493455f1_291649_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/gb9BwnEq16SFzP4_hud105e16569e23a3b9c1a947e493455f1_291649_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="79"
+		data-flex-basis="191px"
+	
+></th>
+</tr>
+</thead>
+</table></div>
+</li>
+<li>
+<p>系统芯片 System-on-a-Chip，SoC：将计算机或其他电子系统集成为单一芯片的集成电路</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th><img src="/post/computer-architecture-notes/USGJW4kz2ibyCdn.png"
+	width="939"
+	height="777"
+	srcset="/post/computer-architecture-notes/USGJW4kz2ibyCdn_hudcf026b953691cf207259456d049bd85_538524_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/USGJW4kz2ibyCdn_hudcf026b953691cf207259456d049bd85_538524_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="120"
+		data-flex-basis="290px"
+	
+></th>
+<th><img src="/post/computer-architecture-notes/USGJW4kz2ibyCdn-165124162054926.png"
+	width="939"
+	height="777"
+	srcset="/post/computer-architecture-notes/USGJW4kz2ibyCdn-165124162054926_hud19f60feef08be520555be15e85efbcf_461847_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/USGJW4kz2ibyCdn-165124162054926_hud19f60feef08be520555be15e85efbcf_461847_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="120"
+		data-flex-basis="290px"
+	
+></th>
+</tr>
+</thead>
+</table></div>
+</li>
+</ul>
+<h2 id="第二讲--指令系统体系结构instruction-set-architecture">第二讲  指令系统体系结构（Instruction Set Architecture）</h2>
+<blockquote>
+<p>内容要点：x86 ISA，MIPS ISA</p>
+</blockquote>
+<h3 id="21-设计自己的计算机">2.1 设计自己的计算机</h3>
+<ul>
+<li>
+<p>一个简单的计算机指令系统</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>指令类别</th>
+<th>指令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>运算类指令</td>
+<td><code>ADD R, M</code> 功能：将<code>R</code>的内容与<code>M</code>中的内容相加后存入<code>R</code></td>
+</tr>
+<tr>
+<td>传送类指令</td>
+<td><code>LOAD R,M</code> 功能：将<code>M</code>中的内容装入<code>R</code><br/><code>STORE M, R</code> 功能：将<code>R</code>的内容存入<code>M</code>中</td>
+</tr>
+<tr>
+<td>转移类指令</td>
+<td><code>JMP L </code>功能：无条件转向<code>L</code>处</td>
+</tr>
+</tbody>
+</table></div>
+<p>注：<code>M</code>和<code>L</code>为存储器地址，<code>R</code>为寄存器编号</p>
+</li>
+<li>
+<p>指令的格式</p>
+<p><img src="/post/computer-architecture-notes/P97niL6KIuBFe3V.png"
+	width="566"
+	height="461"
+	srcset="/post/computer-architecture-notes/P97niL6KIuBFe3V_hu5181a2c756b5acd07498d8f8d6935f1e_178089_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/P97niL6KIuBFe3V_hu5181a2c756b5acd07498d8f8d6935f1e_178089_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="122"
+		data-flex-basis="294px"
+	
+></p>
+<ul>
+<li>每条指令等长，均为2个字节</li>
+<li>第一个字节的高4位是操作码
+<ul>
+<li>LOAD: 0000; ADD: 0001</li>
+<li>STORE: 0010; JMP: 0011</li>
+<li>目前只提供4条指令，最多可扩展到16条</li>
+</ul>
+</li>
+<li>第一个字节的低4位是寄存器号
+<ul>
+<li>$R_0\textasciitilde R_3$O: 0000~0011目</li>
+<li>前只提供4个寄存器，最多可扩展到16个</li>
+</ul>
+</li>
+<li>第二个字节是存储单元地址
+<ul>
+<li>最大可以使用256个字节的存储器</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="22-x86体系结构">2.2 x86体系结构</h3>
+<p><img src="/post/computer-architecture-notes/jExX79YmCIzOQgS.png"
+	width="1294"
+	height="618"
+	srcset="/post/computer-architecture-notes/jExX79YmCIzOQgS_hu45ffa1c6f49caf76a105899f63ce8af6_388943_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/jExX79YmCIzOQgS_hu45ffa1c6f49caf76a105899f63ce8af6_388943_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="209"
+		data-flex-basis="502px"
+	
+></p>
+<ul>
+<li>
+<p>Intel 8086（1978年）</p>
+<p><img src="/post/computer-architecture-notes/WE4muQojS6nsPBv.png"
+	width="647"
+	height="219"
+	srcset="/post/computer-architecture-notes/WE4muQojS6nsPBv_hu730aaafca10708b725d1b2fc48c0944a_109370_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/WE4muQojS6nsPBv_hu730aaafca10708b725d1b2fc48c0944a_109370_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="295"
+		data-flex-basis="709px"
+	
+></p>
+<ul>
+<li>
+<p>内部的通用寄存器为16位，既能处理16位数据，也能处理8位数据</p>
+<ul>
+<li>
+<p>8086的寄存器模型</p>
+<p><img src="/post/computer-architecture-notes/EXw1P7yU65ZvdqH.png"
+	width="1116"
+	height="607"
+	srcset="/post/computer-architecture-notes/EXw1P7yU65ZvdqH_hudb9e27c27457f49999ad4e31f7946711_306067_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/EXw1P7yU65ZvdqH_hudb9e27c27457f49999ad4e31f7946711_306067_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="183"
+		data-flex-basis="441px"
+	
+></p>
+<ul>
+<li>
+<p>通用寄存器（多功能寄存器）</p>
+<ul>
+<li>
+<p>数据寄存器，共有4个，均为16位寄存器</p>
+</li>
+<li>
+<p>每个16位寄存器都可分为两个8位寄存器使用</p>
+</li>
+<li>
+<p>适用大多数算术运算和逻辑运算指令</p>
+</li>
+<li>
+<p>除存放通用数据外，各有一些专门的用途：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>AX</th>
+<th>Accumulator</th>
+<th>存放乘除等指令的操作数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BX</td>
+<td>Base</td>
+<td>存放存储单元的偏移地址</td>
+</tr>
+<tr>
+<td>CX</td>
+<td>Count</td>
+<td>存放计数值</td>
+</tr>
+<tr>
+<td>DX</td>
+<td>Data</td>
+<td>乘法运算产生的部分积 除法运算的部分被除数</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+</ul>
+</li>
+<li>
+<p>标志寄存器：标志位</p>
+<ul>
+<li>
+<p>FLAGS寄存器中包含若干标志位</p>
+<p><img src="/post/computer-architecture-notes/Cq4nZ2jGyfd8zw6.png"
+	width="1107"
+	height="474"
+	srcset="/post/computer-architecture-notes/Cq4nZ2jGyfd8zw6_hu5f8bb0c129e033097e9480a665a93a42_216175_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/Cq4nZ2jGyfd8zw6_hu5f8bb0c129e033097e9480a665a93a42_216175_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="233"
+		data-flex-basis="560px"
+	
+></p>
+</li>
+<li>
+<p>标志位分为两大类：状态标志和控制标志</p>
+<ul>
+<li>状态标志：反映CPU的工作状态
+<ul>
+<li>例如：执行加法运算时是否产生进位；运算结果是否为零</li>
+</ul>
+</li>
+<li>控制标志：对CPU的运行起特定控制作用
+<ul>
+<li>例如：以单步方式还是连续方式运行；是否允许响应外部中断请求</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>指令指针寄存器 IP（Instruction Pointer）：保存一个内存地址，指向当前需要取出的指令</p>
+<ul>
+<li>当CPU从内存中取出一个指令后，IP会自动增加，指向下一指令的地址（注：实际情况会复杂的多）</li>
+<li>程序员不能直接对IP进行存取操作</li>
+<li>转移指令、过程调用/返回指令等会改变IP的内容</li>
+<li>IP寄存器的寻址能力：$2^{16}=65536$（64K）字节单元8</li>
+<li>8086对外有20位地址线，寻址范围：$2^{20}=1M$字节单元</li>
+</ul>
+</li>
+<li>
+<p>段寄存器 Segment Register：与其它寄存器联合生成存储器地址</p>
+<ul>
+<li>CS代码段寄存器 Code Segment</li>
+<li>DS数据段寄存器 Data Segment</li>
+<li>ES附加段寄存器 Extra Segment</li>
+<li>SS堆栈段寄存器 Stack Segment</li>
+</ul>
+</li>
+<li>
+<p>8086的物理地址生成</p>
+<p><img src="/post/computer-architecture-notes/FJdnpsZ4Ageq2cz.png"
+	width="1033"
+	height="596"
+	srcset="/post/computer-architecture-notes/FJdnpsZ4Ageq2cz_hu81117b950b07d1d79c8988d11670ba3e_409766_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/FJdnpsZ4Ageq2cz_hu81117b950b07d1d79c8988d11670ba3e_409766_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="173"
+		data-flex-basis="415px"
+	
+></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>对外有16根数据线和20根地址线可寻址的内存空间为1MByte（220）</p>
+</li>
+<li>
+<p>物理地址的形成采用段加偏移的方式</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Intel 80386（1985年） <em>主频12.5~33MHz、27.5万个晶体管</em></p>
+<ul>
+<li>
+<p>80x86系列中的第一款32位微处理器</p>
+</li>
+<li>
+<p>支持32位的算术和逻辑运算，提供32位的通用寄存器</p>
+</li>
+<li>
+<p>地址总线扩展到32位，可寻址4GB的内存空间</p>
+</li>
+<li>
+<p>改进了“保护模式”（例如，段范围可达4GB）</p>
+</li>
+<li>
+<p>增加了“虚拟8086模式”，可以同时模拟多个8086微处理器</p>
+<p><img src="/post/computer-architecture-notes/AGugVxUrXaYT1Wb.png"
+	width="620"
+	height="183"
+	srcset="/post/computer-architecture-notes/AGugVxUrXaYT1Wb_hu01cab2558d65f3fe1227633e298d4614_140914_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/AGugVxUrXaYT1Wb_hu01cab2558d65f3fe1227633e298d4614_140914_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="338"
+		data-flex-basis="813px"
+	
+></p>
+</li>
+<li>
+<p>IA-32的寄存器模型</p>
+<p><img src="/post/computer-architecture-notes/gdkcKDGbCy4518W.png"
+	width="1960"
+	height="990"
+	srcset="/post/computer-architecture-notes/gdkcKDGbCy4518W_hu1ef8217c3f98deaf9acd1206ac74bc9b_758854_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/gdkcKDGbCy4518W_hu1ef8217c3f98deaf9acd1206ac74bc9b_758854_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="197"
+		data-flex-basis="475px"
+	
+></p>
+<p>注：保护模式下，段寄存器有不同的使用方法</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Intel IA-64：独立于x86，不兼容IA-32，并未获得成功</p>
+</li>
+<li>
+<p>x86-64（2003年）</p>
+<p><img src="/post/computer-architecture-notes/iBf9gSHFjEIbsLr.png"
+	width="1995"
+	height="1004"
+	srcset="/post/computer-architecture-notes/iBf9gSHFjEIbsLr_hu1256eb6523c101ce569dfea8b0601be6_502326_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/iBf9gSHFjEIbsLr_hu1256eb6523c101ce569dfea8b0601be6_502326_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="198"
+		data-flex-basis="476px"
+	
+></p>
+</li>
+</ul>
+<h3 id="23-x86指令简介">2.3 x86指令简介</h3>
+<ul>
+<li>指令的主要类别</li>
+</ul>
+<p><img src="/post/computer-architecture-notes/CuPTkx4EfMY5wUm.png"
+	width="919"
+	height="621"
+	srcset="/post/computer-architecture-notes/CuPTkx4EfMY5wUm_hua0ee67e180edf21dc6536e774d111835_335915_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/CuPTkx4EfMY5wUm_hua0ee67e180edf21dc6536e774d111835_335915_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="147"
+		data-flex-basis="355px"
+	
+></p>
+<ul>
+<li>
+<p>指令的运行结果</p>
+<ul>
+<li>改变通用寄存器的内容</li>
+<li>改变存储器单元的内容</li>
+<li>改变标志位</li>
+<li>改变指令指针</li>
+<li>改变外设端口的内容</li>
+<li>其他</li>
+</ul>
+</li>
+<li>
+<p>程序示例</p>
+<p><img src="/post/computer-architecture-notes/kv72ouUMWX1tOYa.png"
+	width="1812"
+	height="918"
+	srcset="/post/computer-architecture-notes/kv72ouUMWX1tOYa_hub44355e98335572c78a224d82ddda2e8_608840_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/kv72ouUMWX1tOYa_hub44355e98335572c78a224d82ddda2e8_608840_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="197"
+		data-flex-basis="473px"
+	
+></p>
+<ul>
+<li>
+<p>传送指令：把数据或地址传送到寄存器或存储器单元中</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>分组</th>
+<th style="text-align:left">助记符</th>
+<th style="text-align:left">功能</th>
+<th style="text-align:left">操作数类型</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>通用数据传送指令</td>
+<td style="text-align:left">MOV</td>
+<td style="text-align:left">传送</td>
+<td style="text-align:left">字节/字</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">PUSH</td>
+<td style="text-align:left">压栈</td>
+<td style="text-align:left">字</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">POP</td>
+<td style="text-align:left">弹栈</td>
+<td style="text-align:left">字</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">XCHG</td>
+<td style="text-align:left">交换</td>
+<td style="text-align:left">字节/字</td>
+</tr>
+<tr>
+<td>累加器专用传送指令</td>
+<td style="text-align:left">XLAT</td>
+<td style="text-align:left">换码</td>
+<td style="text-align:left">字节</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">IN</td>
+<td style="text-align:left">输入</td>
+<td style="text-align:left">字节/字</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">OUT</td>
+<td style="text-align:left">输出</td>
+<td style="text-align:left">字节/字</td>
+</tr>
+<tr>
+<td>地址传送指令</td>
+<td style="text-align:left">LEA</td>
+<td style="text-align:left">装入有效地址</td>
+<td style="text-align:left">字</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">LDS</td>
+<td style="text-align:left">把指针装入寄存器和DS</td>
+<td style="text-align:left">4个字节</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">LES</td>
+<td style="text-align:left">把指针装入寄存器和ES</td>
+<td style="text-align:left">4个字节</td>
+</tr>
+<tr>
+<td>标志传送指令</td>
+<td style="text-align:left">LAHF</td>
+<td style="text-align:left">把标志装入AH</td>
+<td style="text-align:left">字节</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">SAHF</td>
+<td style="text-align:left">把AH送标志寄存器</td>
+<td style="text-align:left">字节</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">PUSHF</td>
+<td style="text-align:left">标志压栈</td>
+<td style="text-align:left">字</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">POPF</td>
+<td style="text-align:left">标志弹栈</td>
+<td style="text-align:left">字</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>
+<p>MOV指令</p>
+<ul>
+<li>
+<p>格式：<code>MOV DST, SRC</code></p>
+</li>
+<li>
+<p>操作：DST←SRC，把一个操作数从源传送至目的，源操作数保持不变</p>
+</li>
+<li>
+<p>寻址方式示例</p>
+<p><img src="/post/computer-architecture-notes/X7WNZ6jlDtrvcok.png"
+	width="1193"
+	height="708"
+	srcset="/post/computer-architecture-notes/X7WNZ6jlDtrvcok_hubec9261e1b415dd34e97870d5d83dacf_532108_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/X7WNZ6jlDtrvcok_hubec9261e1b415dd34e97870d5d83dacf_532108_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="168"
+		data-flex-basis="404px"
+	
+></p>
+</li>
+<li>
+<p>编码示例：<em>变长指令</em></p>
+<p><img src="/post/computer-architecture-notes/LFakn4fKG3Sb8VP.png"
+	width="2078"
+	height="983"
+	srcset="/post/computer-architecture-notes/LFakn4fKG3Sb8VP_hu2d291363d5823679b31bdda1fb55fd14_829056_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/LFakn4fKG3Sb8VP_hu2d291363d5823679b31bdda1fb55fd14_829056_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="211"
+		data-flex-basis="507px"
+	
+></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>运算指令</p>
+<ul>
+<li>
+<p>逻辑运算和移位指令/位操作指令：实现对二进制位的操作和控制</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:left">分组</th>
+<th style="text-align:left">助记符</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">逻辑运算</td>
+<td style="text-align:left">NOT</td>
+<td>逻辑非</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">AND</td>
+<td>逻辑与</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">OR</td>
+<td>逻辑或</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">XOR</td>
+<td>逻辑异或</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">TEST</td>
+<td>逻辑测试</td>
+</tr>
+<tr>
+<td style="text-align:left">移位</td>
+<td style="text-align:left">SHL</td>
+<td>逻辑左移</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">SAL</td>
+<td>算术左移</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">SHR</td>
+<td>逻辑右移</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">SAR</td>
+<td>算术右移</td>
+</tr>
+<tr>
+<td style="text-align:left">循环移位</td>
+<td style="text-align:left">ROL</td>
+<td>循环左移</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">ROR</td>
+<td>循环右移</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">RCL</td>
+<td>带进位循环左移</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">RCR</td>
+<td>带进位循环右移</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>操作数的限制
+<ul>
+<li>对于单操作数指令，操作数不能是立即数</li>
+<li>对于双操作数指令，限制与<code>MOV</code>指令相同</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>算术运算指令：完成加、减、乘、除等算术运算，提供运算结果调整、符号扩展等功能</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:left">分组</th>
+<th style="text-align:left">助记符</th>
+<th style="text-align:left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">加法</td>
+<td style="text-align:left">ADD</td>
+<td style="text-align:left">加</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">ADC</td>
+<td style="text-align:left">加（带进位）</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">INC</td>
+<td style="text-align:left">加1</td>
+</tr>
+<tr>
+<td style="text-align:left">减法</td>
+<td style="text-align:left">SUB</td>
+<td style="text-align:left">减</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">SBB</td>
+<td style="text-align:left">减（带借位）</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">DEC</td>
+<td style="text-align:left">减1</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">NEG</td>
+<td style="text-align:left">取补</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">CMP</td>
+<td style="text-align:left">比较</td>
+</tr>
+<tr>
+<td style="text-align:left">乘法</td>
+<td style="text-align:left">MUL</td>
+<td style="text-align:left">乘（不带符号）</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">IMUL</td>
+<td style="text-align:left">乘（带符号）</td>
+</tr>
+<tr>
+<td style="text-align:left">除法</td>
+<td style="text-align:left">DIV</td>
+<td style="text-align:left">除（不带符号）</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">IDIV</td>
+<td style="text-align:left">除（带符号）</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>
+<p>操作数的限制</p>
+<ul>
+<li>目的操作数不能是立即数或CS寄存器</li>
+<li>两个操作数不能同时为存储器操作数</li>
+</ul>
+</li>
+<li>
+<p>加法类指令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ADD BL, 8
+</span></span><span class="line"><span class="cl">ADD WORD PTR[BX], DX
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ADD EAX, ECX
+</span></span><span class="line"><span class="cl">ADC EBX, EDX
+</span></span><span class="line"><span class="cl">;EBX:EAX+EDX:ECX
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">INC CL
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>ADD指令（加）</p>
+<ul>
+<li>格式：<code>ADD DST, SRC</code></li>
+<li>操作：DST←DST+SRC</li>
+</ul>
+</li>
+<li>
+<p>ADC指令（带进位的加）</p>
+<ul>
+<li>格式：<code>ADC DST, SRC</code></li>
+<li>操作：DST←DST+SRC+CF</li>
+</ul>
+</li>
+<li>
+<p>INC指令（加1）</p>
+<p><img src="/post/computer-architecture-notes/iPMVK3qDA45JveO.png"
+	width="558"
+	height="111"
+	srcset="/post/computer-architecture-notes/iPMVK3qDA45JveO_huc4bd2797ee5ae33c369d3992499aaab8_66542_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/iPMVK3qDA45JveO_huc4bd2797ee5ae33c369d3992499aaab8_66542_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="502"
+		data-flex-basis="1206px"
+	
+></p>
+<ul>
+<li>格式：<code>INC OPR</code></li>
+<li>操作：OPR←OPR+1</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>转移指令：改变指令执行顺序</p>
+<ul>
+<li>
+<p>根据是否有判断条件，分为无条件转移指令和条件转移指令两大类</p>
+</li>
+<li>
+<p>根据转移目标地址的提供方式，可分为直接转移和间接转移两种方式</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th></th>
+<th><strong>直接转移</strong></th>
+<th><strong>间接转移</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>无条件转移指令</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>条件转移指令</strong></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>条件转移指令：根据某一状态标志转移
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>分组</th>
+<th style="text-align:left">格式</th>
+<th style="text-align:left">功能</th>
+<th style="text-align:left">测试条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>根据某一状态标志转移</td>
+<td style="text-align:left">JC LABEL</td>
+<td style="text-align:left">有进位时转移</td>
+<td style="text-align:left">CF=1</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">JNC LABEL</td>
+<td style="text-align:left">无进位时转移</td>
+<td style="text-align:left">CF=0</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">JP/JPE LABEL</td>
+<td style="text-align:left">奇偶位为1时转移</td>
+<td style="text-align:left">PF=1</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">JNP/JPO LABEL</td>
+<td style="text-align:left">奇偶位为0时转移</td>
+<td style="text-align:left">PF=0</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">JZ/JE LABEL</td>
+<td style="text-align:left">为零/相等时转移</td>
+<td style="text-align:left">ZF=1</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">JNZ/JNE LABEL</td>
+<td style="text-align:left">不为零/不相等时转移</td>
+<td style="text-align:left">ZF=0</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">JS LABEL</td>
+<td style="text-align:left">负数时转移</td>
+<td style="text-align:left">SF=1</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">JNS LABEL</td>
+<td style="text-align:left">正数时转移</td>
+<td style="text-align:left">SF=0</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">JO LABEL</td>
+<td style="text-align:left">溢出时转移</td>
+<td style="text-align:left">OF=1</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">JNO LABEL</td>
+<td style="text-align:left">无溢出时转移</td>
+<td style="text-align:left">OF=0</td>
+</tr>
+<tr>
+<td>对无符号数</td>
+<td style="text-align:left">JB/JNAE LABEL</td>
+<td style="text-align:left">低于/不高于等于时转移</td>
+<td style="text-align:left">CF=1</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">JNB/JAE LABEL</td>
+<td style="text-align:left">不低于高于等于时转移</td>
+<td style="text-align:left">CF=0</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">JA/JNBE LABEL</td>
+<td style="text-align:left">高于/不低于等于时转移</td>
+<td style="text-align:left">CF=0且ZF=0</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">JNA/JBE LABEL</td>
+<td style="text-align:left">不高于/低于等于时转移</td>
+<td style="text-align:left">CF=1或ZF=1</td>
+</tr>
+<tr>
+<td>对有符号数</td>
+<td style="text-align:left">JL/JNGE LABEL</td>
+<td style="text-align:left">小于/不大于等于时转移</td>
+<td style="text-align:left">SF≠OF</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">JNL/JGE LABEL</td>
+<td style="text-align:left">不小于/大于等于时转移</td>
+<td style="text-align:left">SF=OF</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">JG/JNLE LABEL</td>
+<td style="text-align:left">大于/不小于等于时转移</td>
+<td style="text-align:left">ZF=0且SF=OF</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">JNG/JLE LABEL</td>
+<td style="text-align:left">不大于/小于等于时转移</td>
+<td style="text-align:left">ZF=1或SF≠OF</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>控制指令：控制CPU的功能；对标志位进行操作</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>分组</th>
+<th style="text-align:left">格式</th>
+<th style="text-align:left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>标志操作指令</td>
+<td style="text-align:left">STC</td>
+<td style="text-align:left">把进位标志CF置1</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">CLC</td>
+<td style="text-align:left">把进位标志CF清0</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">CMC</td>
+<td style="text-align:left">把进位标志CF取反</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">STD</td>
+<td style="text-align:left">把方向标志DF置1</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">CLD</td>
+<td style="text-align:left">DF清0把方向标志</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">STI</td>
+<td style="text-align:left">把中断标志IF置1</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">CLI</td>
+<td style="text-align:left">把中断标志IF清0</td>
+</tr>
+<tr>
+<td>外同步指令</td>
+<td style="text-align:left">HLT</td>
+<td style="text-align:left">暂停</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">WAIT</td>
+<td style="text-align:left">等待</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">ESC</td>
+<td style="text-align:left">交权</td>
+</tr>
+<tr>
+<td></td>
+<td style="text-align:left">LOCK</td>
+<td style="text-align:left">封锁总线（指令前缀）</td>
+</tr>
+<tr>
+<td>空操作</td>
+<td style="text-align:left">NOP</td>
+<td style="text-align:left">空操作</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="24-复杂的x86指令举例">2.4 复杂的x86指令举例</h3>
+<ul>
+<li>
+<p>串操作</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:left">分组</th>
+<th style="text-align:left">助记符</th>
+<th style="text-align:left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">串操作指令</td>
+<td style="text-align:left">MOVS (MOVSB, MOVSW)</td>
+<td style="text-align:left">串传送（字节串传送，字串传送）</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">CMPS (CMPSB, CMPSW)</td>
+<td style="text-align:left">串比较（字节串比较，字串比较）</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">SCAS (SCASB, SCASW)</td>
+<td style="text-align:left">串扫描（字节串扫描，字串扫描）</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">LODS (LODSB, LODSW)</td>
+<td style="text-align:left">取串（取字节串，取字串）</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">STOS (STOSB, STOSW)</td>
+<td style="text-align:left">存串（存字节串，存字串）</td>
+</tr>
+<tr>
+<td style="text-align:left">重复前缀</td>
+<td style="text-align:left">REP</td>
+<td style="text-align:left">无条件重复前缀</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">REPE/REPZ</td>
+<td style="text-align:left">相等/为零重复前缀</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td style="text-align:left">REPNE/REPNZ</td>
+<td style="text-align:left">不相等/不为零重复前缀</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>
+<p>作用</p>
+<ul>
+<li>对存储器中的数据串进行每次一个元素的操作</li>
+<li>串的基本单位是字节或字（即“一个元素”）</li>
+<li>串长度可达64KB</li>
+</ul>
+</li>
+<li>
+<p>分类</p>
+<ul>
+<li>
+<p>共5条串操作指令</p>
+<ul>
+<li>
+<p>MOVSB指令（字节串传送）</p>
+<p><img src="/post/computer-architecture-notes/lvzReZXtr4JTVL2.png"
+	width="1679"
+	height="935"
+	srcset="/post/computer-architecture-notes/lvzReZXtr4JTVL2_hua8efff3d7dbe53c1bd52cb74234010ba_941282_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/lvzReZXtr4JTVL2_hua8efff3d7dbe53c1bd52cb74234010ba_941282_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="179"
+		data-flex-basis="430px"
+	
+></p>
+<ul>
+<li>
+<p>格式：<code>MOVSB</code></p>
+</li>
+<li>
+<p>操作：在存储器中将指定位置的一个字节单元传送到另一个指定的位置</p>
+</li>
+<li>
+<p>隐含操作数</p>
+<ul>
+<li>源串地址为<code>DS:SI</code>，目的串地址为<code>ES:DI</code></li>
+<li>串的长度在CX寄存器中</li>
+</ul>
+</li>
+<li>
+<p>处理完一个串元素后的操作（硬件自动完成）</p>
+<ul>
+<li>修改SI和DI，指向下一个串元素</li>
+<li>若使用重复前，则CX←CX-1</li>
+</ul>
+</li>
+<li>
+<p>串传送方向（DF标志位）：应对源串和“目的串的存储区域部分重叠的问题</p>
+<p><img src="/post/computer-architecture-notes/zwLZjoYTqMmbcFk.png"
+	width="1755"
+	height="841"
+	srcset="/post/computer-architecture-notes/zwLZjoYTqMmbcFk_hu992394cdbf34b34897036dba64d66d47_548732_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/zwLZjoYTqMmbcFk_hu992394cdbf34b34897036dba64d66d47_548732_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="208"
+		data-flex-basis="500px"
+	
+></p>
+<ul>
+<li>设置DF=0
+<ul>
+<li>从“源串”的低地址开始传送</li>
+<li>传送过程中，SI和DI自动增量修改</li>
+</ul>
+</li>
+<li>设置DF=1
+<ul>
+<li>从“源串”的高地址开始传送</li>
+<li>传送过程中，SI和DI自动减量修改</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>另有3种重复前缀，与串操作指令配合使用</p>
+<ul>
+<li>REP前缀（无条件重复）
+<ul>
+<li>格式：<code>REP 串操作指令</code></li>
+<li>操作：当CX≠0时，重复执行串操作指令</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>“最长的指令”</p>
+<p><img src="/post/computer-architecture-notes/xstMy27GzJwZrlB.png"
+	width="1173"
+	height="411"
+	srcset="/post/computer-architecture-notes/xstMy27GzJwZrlB_huaea2a3694d7f1f2baed0d6445fe8cbe7_215580_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/xstMy27GzJwZrlB_huaea2a3694d7f1f2baed0d6445fe8cbe7_215580_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="285"
+		data-flex-basis="684px"
+	
+></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">LOCK ADD DWORD PTR ES:[EAX+ECX*8+11223344H], 12345678H
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>指令编码：<code>26 66 67 F0 81 84 C8</code> <code>44 33 22 11</code> <code>78 56 34 12</code>（15个字节）</p>
+</li>
+</ul>
+<h3 id="25-mips体系结构">2.5 MIPS体系结构</h3>
+<ul>
+<li>
+<p>MIPS指令的发展</p>
+<p><img src="/post/computer-architecture-notes/W2imsKgBHCc9SL6.png"
+	width="2116"
+	height="988"
+	srcset="/post/computer-architecture-notes/W2imsKgBHCc9SL6_hudb23351112c806cfdc6efe693be41363_737989_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/W2imsKgBHCc9SL6_hudb23351112c806cfdc6efe693be41363_737989_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="214"
+		data-flex-basis="514px"
+	
+></p>
+</li>
+<li>
+<p>MIPS的设计指导思想</p>
+<ul>
+<li>Microprocessor without Interlocked Piped Stages</li>
+<li>主要关注点
+<ul>
+<li>减少指令的类型</li>
+<li>降低指令复杂度</li>
+</ul>
+</li>
+<li>基本原则： A simpler CPU is a faster CPU</li>
+</ul>
+</li>
+<li>
+<p>主要特点</p>
+<ul>
+<li>固定的指令长度：32-bit，即1word👉简化了从存储器取指令</li>
+<li>简单的寻址模式👉简化了从存储器取操作数</li>
+<li>指令数量少，指令功能简单（一条指令只完成一个操作）👉简化指令的执行过程</li>
+<li>只有Load和Store指令可以访问存储器👉例如，不支持x86指令的这种操作：<code>ADD AX, [3000H]</code></li>
+<li>需要优秀的编译器支持</li>
+</ul>
+</li>
+<li>
+<p>MIPS指令示例</p>
+<ul>
+<li>
+<p>运算指令</p>
+<ul>
+<li>算术运算
+<ul>
+<li>加法指令
+<ul>
+<li>格式：<code>add a, b, c</code></li>
+<li>操作：将b和c求和，结果放入a中</li>
+</ul>
+</li>
+<li><code>sub a, b, c</code></li>
+<li><code>mul a, b, c</code></li>
+<li><code>div a, b, c</code></li>
+</ul>
+</li>
+<li>逻辑运算
+<ul>
+<li><code>and a, b, c</code></li>
+<li><code>or a, b, c</code></li>
+</ul>
+</li>
+<li>移位
+<ul>
+<li><code>sll a, b, c</code></li>
+<li><code>srl a, b, c</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>访存指令</p>
+<blockquote>
+<p>假设</p>
+<ul>
+<li>A是一个100个字（word）的数组，首地址在寄存器$19中</li>
+<li>变量h对应寄存器$18</li>
+<li>临时数据存放在寄存器$8</li>
+</ul>
+<p><code>A[10] = h + A[3]</code>对应的MIPS指令为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">lw $18, 12($19) # t0 = A[3], 12表示位移 (MIPS中一个字32位)
+</span></span><span class="line"><span class="cl">add $8, $18, $8 # t0 = h + A[3]
+</span></span><span class="line"><span class="cl">sw $8, 40($19) # A[10] = h + A[3]
+</span></span></code></pre></td></tr></table>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p>MIPS的通用寄存器：32个，每个都是32位宽</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>编号</th>
+<th>名称</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>$zero</td>
+<td>The Constant Value 0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>$at</td>
+<td>Assembler Temporary</td>
+</tr>
+<tr>
+<td>2-3</td>
+<td>$v0-$v1</td>
+<td>Values for Function Results and Expression Evaluation</td>
+</tr>
+<tr>
+<td>4-7</td>
+<td>$a0-$a3</td>
+<td>Arguments</td>
+</tr>
+<tr>
+<td>8-15</td>
+<td>$t0-$t7</td>
+<td>Temporaries</td>
+</tr>
+<tr>
+<td>16-23*</td>
+<td>$s0-$s7</td>
+<td>Saved Temporaries</td>
+</tr>
+<tr>
+<td>24-25</td>
+<td>$t8-$t9</td>
+<td>Temporaries</td>
+</tr>
+<tr>
+<td>26-27</td>
+<td>$k0-$k1</td>
+<td>Reserved for OS Kernel</td>
+</tr>
+<tr>
+<td>28*</td>
+<td>$gp</td>
+<td>Global Pointer</td>
+</tr>
+<tr>
+<td>29*</td>
+<td>$sp</td>
+<td>Stack Pointer</td>
+</tr>
+<tr>
+<td>30*</td>
+<td>$fp</td>
+<td>Frame Pointer</td>
+</tr>
+<tr>
+<td>31*</td>
+<td>$ra</td>
+<td>Return Address</td>
+</tr>
+</tbody>
+</table></div>
+<p>* Preserved across a call</p>
+</li>
+</ul>
+<h3 id="26-mips指令简介">2.6 MIPS指令简介</h3>
+<details>
+<summary>MIPS Green Sheet</summary>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th><img src="/post/computer-architecture-notes/PNJnTFrbEmzUcX3.png"
+	width="1700"
+	height="2200"
+	srcset="/post/computer-architecture-notes/PNJnTFrbEmzUcX3_huf2e6b21f881aa9ff9a698d9adabeb9ed_133055_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/PNJnTFrbEmzUcX3_huf2e6b21f881aa9ff9a698d9adabeb9ed_133055_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+		alt="MIPS Reference Data_页面_1"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="77"
+		data-flex-basis="185px"
+	
+></th>
+<th><img src="/post/computer-architecture-notes/PNJnTFrbEmzUcX3-165124168232647.png"
+	width="1700"
+	height="2200"
+	srcset="/post/computer-architecture-notes/PNJnTFrbEmzUcX3-165124168232647_hu03ca3b4fdd445717fc66d0a6772781a1_69796_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/PNJnTFrbEmzUcX3-165124168232647_hu03ca3b4fdd445717fc66d0a6772781a1_69796_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="77"
+		data-flex-basis="185px"
+	
+></th>
+</tr>
+</thead>
+</table></div>
+</details>
+<ul>
+<li>
+<p>MIPS指令的基本格式</p>
+<p><img src="/post/computer-architecture-notes/6IX3hyFtd9jmLrl.png"
+	width="1979"
+	height="621"
+	srcset="/post/computer-architecture-notes/6IX3hyFtd9jmLrl_hua3e78fa66dc97e57916536e764fefa6b_287295_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/6IX3hyFtd9jmLrl_hua3e78fa66dc97e57916536e764fefa6b_287295_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="318"
+		data-flex-basis="764px"
+	
+></p>
+<p>* R：Register，寄存器；I：Immediate，立即数；J：Jump，无条件转移</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th></th>
+<th>R型指令</th>
+<th>I型指令</th>
+<th>J型指令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>运算指令</strong></td>
+<td><code>add rd, rs, rt</code><br><code>sll rd, rt, shamt</code></td>
+<td><code>addi rt, rs, imm</code><br><code>slti rt, rs, imm</code></td>
+<td>/</td>
+</tr>
+<tr>
+<td><strong>访存指令</strong></td>
+<td>/</td>
+<td><code>lw rt, imm(rs)</code><br><code>sw rt, imm(rs)</code></td>
+<td>/</td>
+</tr>
+<tr>
+<td><strong>分支指令</strong></td>
+<td><code>jr rs</code></td>
+<td><code>beq rs, rt, imm</code></td>
+<td><code>j addr</code></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>
+<p>R型指令的格式：包含六个域</p>
+<p><img src="/post/computer-architecture-notes/MWrimJcoC4BIfu6.png"
+	width="1979"
+	height="254"
+	srcset="/post/computer-architecture-notes/MWrimJcoC4BIfu6_hu475d1b5534ae557ede83ade3c3fdd113_166119_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/MWrimJcoC4BIfu6_hu475d1b5534ae557ede83ade3c3fdd113_166119_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="779"
+		data-flex-basis="1869px"
+	
+></p>
+<ul>
+<li>2个6-bit域，可表示0~63
+<ul>
+<li>opcode：用于指定指令的类型，所有R型指令该域值均为0</li>
+<li>funct：与opcode域组合，精确地指定指令的类型</li>
+</ul>
+</li>
+<li>4个5-bit域，可表示0~31，对应32个通用寄存器
+<ul>
+<li>rs：Source Register，通常用于指定第一个源操作数所在的寄存器编号</li>
+<li>rt：Target Register，通常用于指定第二个源操作数所在的寄存器编号</li>
+<li>rd：Destination Register，通常用于指定日的操作数（保存运算结果）的寄存器编号</li>
+<li>shamt：shift amount，用于移位指令进行移位操作的位数；非移位指令该域均为0</li>
+</ul>
+</li>
+<li>示例：<code>add $8, $9, $10</code>（opcode=0，funct=32，shamt=0，rd=8，rs=9，rt=10）→<code>000000 01001 01010 01000 00000 100000</code></li>
+</ul>
+</li>
+<li>
+<p>I型指令的格式</p>
+<p><img src="/post/computer-architecture-notes/4Er3KJg8QdoGpqk.png"
+	width="1436"
+	height="185"
+	srcset="/post/computer-architecture-notes/4Er3KJg8QdoGpqk_hua8d3e7fcda586abcd86a784d27d30b87_87508_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/4Er3KJg8QdoGpqk_hua8d3e7fcda586abcd86a784d27d30b87_87508_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="776"
+		data-flex-basis="1862px"
+	
+></p>
+<ul>
+<li>immediate域：16-bit的立即数，可以表示$2^{16}$个不同数值
+<ul>
+<li>对于访存指令，通常可以满足访存地址偏移量的需求（-32768~+32767）</li>
+<li>对于运算指令，无法满足全部需求</li>
+</ul>
+</li>
+<li>示例：<code>addi $21, $22, -50 # $21 = $22 + (-50)</code>（opcode=8，rs=22，rt=21，immediate=-50）→<code>001000 10110 10101</code> <code>1111 1111 1100 1110</code></li>
+</ul>
+</li>
+<li>
+<p>分支指令：改变控制流</p>
+<ul>
+<li>
+<p>条件分支（I型）：根据比较的结果改变控制流</p>
+<ul>
+<li>
+<p>beq：branch if equal</p>
+<ul>
+<li>格式：<code>beq reg1, reg2, L1</code>（opcode=4）</li>
+<li>操作：<code>if (value in reg1) == (value in reg2) goto L1</code></li>
+</ul>
+</li>
+<li>
+<p>bne：branch if not equal</p>
+<ul>
+<li><code>bne rs, rt, imm</code>（opcode=5）</li>
+</ul>
+</li>
+<li>
+<p>示例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">j</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">f</span> <span class="o">=</span> <span class="n">g</span> <span class="o">+</span> <span class="n">h</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">  <span class="n">f</span> <span class="o">=</span> <span class="n">g</span> <span class="o">-</span> <span class="n">h</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">beq $s3, $s4, True # branch i == j
+</span></span><span class="line"><span class="cl">sub $s0, $s1, $s2 # f = g - h (false)
+</span></span><span class="line"><span class="cl">j Fin # goto Fin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">True: add $s0, $s1, $s2 # f = g + h (true)
+</span></span><span class="line"><span class="cl">Fin: ...
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>目标地址范围</p>
+<ul>
+<li>以当前PC为基准，16-bit位移量可以表示$±2^{15}$bytes</li>
+<li>MIPS的指令长度固定为32-bit（word）：指令位置一定在四个字节对齐处，指令地址低两位必为0</li>
+<li>16-bit位移量可以表示$±2^{15}$words = $±2^{17}$bytes ($±128$KB)</li>
+</ul>
+</li>
+<li>
+<p>目标地址计算方法</p>
+<ul>
+<li>分支条件不成立，<code>PC = PC + 4 = next instruction</code></li>
+<li>分支条件成立<code>PC = (PC + 4) + (immediate * 4)</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>非条件分支：无条件地改变控制流</p>
+<p><img src="/post/computer-architecture-notes/VkKZ7UqaSyACFcW.png"
+	width="1342"
+	height="170"
+	srcset="/post/computer-architecture-notes/VkKZ7UqaSyACFcW_hu4d9d9173f21077e17c839a4f73044080_49596_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/VkKZ7UqaSyACFcW_hu4d9d9173f21077e17c839a4f73044080_49596_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="789"
+		data-flex-basis="1894px"
+	
+></p>
+<ul>
+<li>j（J型）：jump
+<ul>
+<li>目标地址范围：$±2^{28}$bytes（$±256$MB）</li>
+<li>目标地址计算方法：<code>New PC = {(PC + 4) [31..28], address, 00}</code></li>
+</ul>
+</li>
+<li>jr（R型）：jump register
+<ul>
+<li>格式：<code>jr rs</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="第三讲--算术逻辑单元arithmetic-logic-unit">第三讲  算术逻辑单元（Arithmetic Logic Unit）</h2>
+<blockquote>
+<p>内容要点：逻辑运算，二进制加减法运算，ALU的实现</p>
+</blockquote>
+<h3 id="31-算术运算和逻辑运算">3.1 算术运算和逻辑运算</h3>
+<ul>
+<li>
+<p>算术运算指令 MIPS Core Instruction Set</p>
+<ul>
+<li>
+<p>R型</p>
+<p><img src="/post/computer-architecture-notes/gyzxlBYI8wrnPqE.png"
+	width="1827"
+	height="1019"
+	srcset="/post/computer-architecture-notes/gyzxlBYI8wrnPqE_hucb23af6a16a371f70be82e415462a6df_558346_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/gyzxlBYI8wrnPqE_hucb23af6a16a371f70be82e415462a6df_558346_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="179"
+		data-flex-basis="430px"
+	
+></p>
+<ul>
+<li><code>add rd, rs, rt #R[rd] = R[rs] + R[rt]</code> (1)</li>
+<li><code>addu rd, rs, rt # R[rd] = R[rs] + R[rt]</code></li>
+<li><code>sub rd, rs, rt # R[rd] = R[rs] - R[rt]</code> (1)</li>
+<li><code>subu rd, rs, rt # R[rd] = R[rs] - R[rt]</code></li>
+</ul>
+<p>(1) May cause overflow exception</p>
+</li>
+<li>
+<p>I型</p>
+<p><img src="/post/computer-architecture-notes/i8kn3taX5TSZOVW.png"
+	width="1828"
+	height="1022"
+	srcset="/post/computer-architecture-notes/i8kn3taX5TSZOVW_hu2870e7af65ae91255eed6fc31ceb9636_649783_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/i8kn3taX5TSZOVW_hu2870e7af65ae91255eed6fc31ceb9636_649783_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="178"
+		data-flex-basis="429px"
+	
+></p>
+<ul>
+<li><code>addi rt, ts, imm # R[rt] = R[rs] + SignExtImm</code> (1, 2)</li>
+<li><code>addiu rt, rs, imm # R[rt] = R[rs] +SignExtImm</code> (2)</li>
+</ul>
+<p>(1) May cause overflow exception</p>
+<p>(2) <code>SignExtImm = {16{imm[15]}, imm}</code>（符号扩展）</p>
+</li>
+</ul>
+</li>
+<li>
+<p>逻辑运算指令 MIPS Core Instruction Set</p>
+<ul>
+<li>
+<p>R型</p>
+<ul>
+<li><code>and rd, rs, rt # R[rd] = R[rs] &amp; R[rt]</code></li>
+<li><code>or rd, rs, rt # R[rd] = R[rs] | R[rt]</code></li>
+<li><code>nor rd, rs, rt # R[rd] = ~ (R[rs] | R[rt])</code></li>
+</ul>
+</li>
+<li>
+<p>I型</p>
+<ul>
+<li><code>andi rt, rs, imm # R[rt] = R[rs] &amp; ZeroExtImm</code> (3)</li>
+<li><code>ori rt, rs, imm # R[rt] = R[rs] | ZeroExtImm</code> (3)</li>
+</ul>
+<p>(3) <code>ZeroExtImm = {16{1'b0}, imm}</code>（零扩展）</p>
+</li>
+</ul>
+</li>
+<li>
+<p>算术逻辑运算的需求</p>
+<ul>
+<li>算术运算
+<ul>
+<li>两个32—bit数的加法，结果为一个32-bit数</li>
+<li>两个32-bit数的减法，结果为一个32-bit数</li>
+<li>检查加减法的结果是否溢出</li>
+</ul>
+</li>
+<li>逻辑运算
+<ul>
+<li>两个32-bit数的“与”操作，结果为一个32-bit数</li>
+<li>两个32-bit数的“或”操作，结果为一个32-bit数</li>
+<li>两个32-bit数的“或非”操作，结果为一个32-bit数</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="32-门电路的基本原理">3.2 门电路的基本原理</h3>
+<ul>
+<li>
+<p>晶体管 transistor：现代集成电路中通常使用MOS晶体管（Metal-Oxide-Semiconductor：金属-氧化物-半导体）</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center"><strong>N型MOS管</strong></th>
+<th style="text-align:center"><strong>P型MIS管</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>电路图</strong></td>
+<td style="text-align:center"><img src="/post/computer-architecture-notes/kcd9BJFTZoDiOX8.png"
+	width="481"
+	height="171"
+	srcset="/post/computer-architecture-notes/kcd9BJFTZoDiOX8_hu67f18339e25d4e327162574ecaf87641_34487_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/kcd9BJFTZoDiOX8_hu67f18339e25d4e327162574ecaf87641_34487_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="281"
+		data-flex-basis="675px"
+	
+></td>
+<td style="text-align:center"><img src="/post/computer-architecture-notes/fueIUXaFH6bp8VP.png"
+	width="659"
+	height="241"
+	srcset="/post/computer-architecture-notes/fueIUXaFH6bp8VP_hu520c0d4c6103b4c3fad29caab323412e_66971_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/fueIUXaFH6bp8VP_hu520c0d4c6103b4c3fad29caab323412e_66971_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="273"
+		data-flex-basis="656px"
+	
+></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>导通条件</strong></td>
+<td style="text-align:center">Gate端连接高电平</td>
+<td style="text-align:center">Gate端连接低电平</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+<li>
+<p>CMOS集成电路 Complementary MOS：由PMOS和NMOS共同构成的互补型MOS集成电路</p>
+</li>
+<li>
+<p>门电路的实现</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">非门 NOT gate</th>
+<th style="text-align:center">与门 AND gate</th>
+<th style="text-align:center">与非门 NAND gate</th>
+<th style="text-align:center">或门 OR gate</th>
+<th style="text-align:center">异或门 Exclusive-OR gate / XOR gate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>逻辑符号</strong></td>
+<td style="text-align:center"><img src="/post/computer-architecture-notes/aoX4ys8KUYqkHZ7.png"
+	width="293"
+	height="132"
+	srcset="/post/computer-architecture-notes/aoX4ys8KUYqkHZ7_hu06c7a0b55d8fda08b9c7024934a5c93e_15850_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/aoX4ys8KUYqkHZ7_hu06c7a0b55d8fda08b9c7024934a5c93e_15850_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="221"
+		data-flex-basis="532px"
+	
+></td>
+<td style="text-align:center"><img src="/post/computer-architecture-notes/rKu9FbshYTg6qGX.png"
+	width="259"
+	height="115"
+	srcset="/post/computer-architecture-notes/rKu9FbshYTg6qGX_hu42494a2a537f1350f525a6b92dd15986_10628_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/rKu9FbshYTg6qGX_hu42494a2a537f1350f525a6b92dd15986_10628_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="225"
+		data-flex-basis="540px"
+	
+></td>
+<td style="text-align:center"><img src="/post/computer-architecture-notes/kVOYc1po9MzEuBd.png"
+	width="141"
+	height="65"
+	srcset="/post/computer-architecture-notes/kVOYc1po9MzEuBd_hu9ed2db11c659341cdbbc1352acee8e11_1895_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/kVOYc1po9MzEuBd_hu9ed2db11c659341cdbbc1352acee8e11_1895_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="216"
+		data-flex-basis="520px"
+	
+></td>
+<td style="text-align:center"><img src="/post/computer-architecture-notes/GHbFL4dr9XfyEMa.png"
+	width="282"
+	height="120"
+	srcset="/post/computer-architecture-notes/GHbFL4dr9XfyEMa_hu471ca11138d31d1f606ca6aa63db96ed_16310_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/GHbFL4dr9XfyEMa_hu471ca11138d31d1f606ca6aa63db96ed_16310_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="235"
+		data-flex-basis="564px"
+	
+></td>
+<td style="text-align:center"><img src="/post/computer-architecture-notes/ltUkp3ycVG7iFrP.png"
+	width="287"
+	height="120"
+	srcset="/post/computer-architecture-notes/ltUkp3ycVG7iFrP_hu51175ca2fd68299e64c6179f75d943ac_18751_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/ltUkp3ycVG7iFrP_hu51175ca2fd68299e64c6179f75d943ac_18751_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="239"
+		data-flex-basis="574px"
+	
+></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>真值表</strong></td>
+<td style="text-align:center"><img src="/post/computer-architecture-notes/7d8KbtUwWyIjzAV.png"
+	width="402"
+	height="201"
+	srcset="/post/computer-architecture-notes/7d8KbtUwWyIjzAV_hu9b751d59a32e38b0d0b23cf34c349e3c_33709_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/7d8KbtUwWyIjzAV_hu9b751d59a32e38b0d0b23cf34c349e3c_33709_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="200"
+		data-flex-basis="480px"
+	
+></td>
+<td style="text-align:center"><img src="/post/computer-architecture-notes/rLOi1jpafyqInbo.png"
+	width="459"
+	height="313"
+	srcset="/post/computer-architecture-notes/rLOi1jpafyqInbo_hu43c1ead995d80a2f1f084ad231a24a21_73598_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/rLOi1jpafyqInbo_hu43c1ead995d80a2f1f084ad231a24a21_73598_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="146"
+		data-flex-basis="351px"
+	
+></td>
+<td style="text-align:center"><img src="/post/computer-architecture-notes/629UZHaNlvtAJVM.png"
+	width="459"
+	height="313"
+	srcset="/post/computer-architecture-notes/629UZHaNlvtAJVM_hu43c1ead995d80a2f1f084ad231a24a21_69894_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/629UZHaNlvtAJVM_hu43c1ead995d80a2f1f084ad231a24a21_69894_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="146"
+		data-flex-basis="351px"
+	
+></td>
+<td style="text-align:center"><img src="/post/computer-architecture-notes/trEJzUcfWylMd5j.png"
+	width="494"
+	height="336"
+	srcset="/post/computer-architecture-notes/trEJzUcfWylMd5j_hud3d0e406467f705c246478a2de6535fd_89551_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/trEJzUcfWylMd5j_hud3d0e406467f705c246478a2de6535fd_89551_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="147"
+		data-flex-basis="352px"
+	
+></td>
+<td style="text-align:center"><img src="/post/computer-architecture-notes/A6ROn5aI3sqZNFj.png"
+	width="677"
+	height="461"
+	srcset="/post/computer-architecture-notes/A6ROn5aI3sqZNFj_hube29c48bdfd6839b82d32770917518e3_135509_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/A6ROn5aI3sqZNFj_hube29c48bdfd6839b82d32770917518e3_135509_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="146"
+		data-flex-basis="352px"
+	
+></td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>逻辑函数表示</strong></td>
+<td style="text-align:center">$Y=\bar{A}$（$Y=\sim{A}$，$Y=!A$）</td>
+<td style="text-align:center">$Y=A\cdot B$</td>
+<td style="text-align:center">$Y=\overline{AB}=\overline{A\cdot B}=A\bar{\wedge}B=\overline{A\wedge B}$</td>
+<td style="text-align:center">$Y=A+B$</td>
+<td style="text-align:center">$Y=A\otimes B=(\bar{A}\cdot B)+(A\cdot\bar{B})$（$Y=A \char`^B$）</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>工作过程</strong></td>
+<td style="text-align:center"><img src="/post/computer-architecture-notes/eBlPnZqwFX4pbHu.png"
+	width="1536"
+	height="971"
+	srcset="/post/computer-architecture-notes/eBlPnZqwFX4pbHu_hu80246ac4365f22331e7e99ff2e013d56_240857_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/eBlPnZqwFX4pbHu_hu80246ac4365f22331e7e99ff2e013d56_240857_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="158"
+		data-flex-basis="379px"
+	
+></td>
+<td style="text-align:center"><img src="/post/computer-architecture-notes/yYXe2VgCSjbLs5r.png"
+	width="617"
+	height="166"
+	srcset="/post/computer-architecture-notes/yYXe2VgCSjbLs5r_hue4e8c2a47ed90b216135354e27a2c956_34705_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/yYXe2VgCSjbLs5r_hue4e8c2a47ed90b216135354e27a2c956_34705_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="371"
+		data-flex-basis="892px"
+	
+><br/>（实际用“与非门”和“非门”实现“与门”)</td>
+<td style="text-align:center"><img src="/post/computer-architecture-notes/m2rdgxMJKoCEXPO.png"
+	width="1498"
+	height="968"
+	srcset="/post/computer-architecture-notes/m2rdgxMJKoCEXPO_huc85ef584415298028b99ff208d26f6e5_295540_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/m2rdgxMJKoCEXPO_huc85ef584415298028b99ff208d26f6e5_295540_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="154"
+		data-flex-basis="371px"
+	
+></td>
+<td style="text-align:center"><img src="/post/computer-architecture-notes/feI3DS52BclsEUw.png"
+	width="894"
+	height="639"
+	srcset="/post/computer-architecture-notes/feI3DS52BclsEUw_huc77ae6017b01247c0c003df05011eea2_16632_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/feI3DS52BclsEUw_huc77ae6017b01247c0c003df05011eea2_16632_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="139"
+		data-flex-basis="335px"
+	
+></td>
+<td style="text-align:center"><img src="/post/computer-architecture-notes/WjHRDJkwpTPdrVl.png"
+	width="561"
+	height="398"
+	srcset="/post/computer-architecture-notes/WjHRDJkwpTPdrVl_hu1dff028470fb0bbe37a228ee49d73439_3103_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/WjHRDJkwpTPdrVl_hu1dff028470fb0bbe37a228ee49d73439_3103_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="140"
+		data-flex-basis="338px"
+	
+></td>
+</tr>
+</tbody>
+</table></div>
+</li>
+</ul>
+<h3 id="33-寄存器的基本原理">3.3 寄存器的基本原理</h3>
+<ul>
+<li>
+<p>寄存器的内部结构</p>
+<p><img src="/post/computer-architecture-notes/eg27umESfdsPL69.png"
+	width="1762"
+	height="1018"
+	srcset="/post/computer-architecture-notes/eg27umESfdsPL69_hu0a28833da3745c3cfdc27b37a87a9984_565945_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/eg27umESfdsPL69_hu0a28833da3745c3cfdc27b37a87a9984_565945_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="173"
+		data-flex-basis="415px"
+	
+></p>
+<ul>
+<li>32个D触发器：仅为原理性说明</li>
+</ul>
+<ul>
+<li>
+<p>D触发器 D flip-flop / DFF</p>
+<ul>
+<li>
+<p>具有存储信息能力的基本单元</p>
+</li>
+<li>
+<p>由若干逻辑门构成，有多种实现方式</p>
+</li>
+<li>
+<p>主要有一个数据输入、一个数据输出和一个时钟输入</p>
+</li>
+<li>
+<p>在时钟clock的上升沿（0→1，低电平→高电平），经过clock to Q的时间，采样输入D的值，传送到输出Q，其余时间输出Q的值不变</p>
+<ul>
+<li>时钟频率（如约定每十秒钟会来按一次快门→时钟频率0.1Hz）</li>
+<li>要求输入信号在时钟上升沿之前有一段很短的稳定时间（set up时间），在时钟上升沿之后也需要有一段很短的稳定时间（hold时间）：对于D触发器来说，在时钟上升沿前后很短的时间内，输入端的信号不能发生变化，否则就可能造成无法正确的采样</li>
+<li>在一个复杂的系统中有很多的D触发器用各种不同的方式相连，就可以在不同的触发器中存放不同的信息， 并在时钟的控制下进行传递，而在时钟上升沿没有到来的时候， 无论输入发生什么样的变化都不会影响到后面触发器的输出</li>
+</ul>
+</li>
+<li>
+<p>时序图</p>
+<p><img src="/post/computer-architecture-notes/lOh84WfDKBbQSpA.png"
+	width="1163"
+	height="392"
+	srcset="/post/computer-architecture-notes/lOh84WfDKBbQSpA_hud81bc9cefc254387b7572a254c6bf08f_52426_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/lOh84WfDKBbQSpA_hud81bc9cefc254387b7572a254c6bf08f_52426_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="296"
+		data-flex-basis="712px"
+	
+></p>
+<p>时钟周期：两个上升沿之间的间隔时间</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="34-逻辑运算的实现">3.4 逻辑运算的实现</h3>
+<ul>
+<li>
+<p>与运算的实现：<code>and rd, ts, r</code></p>
+<p><img src="/post/computer-architecture-notes/MOa4ICXk3GRPNSW.png"
+	width="1255"
+	height="494"
+	srcset="/post/computer-architecture-notes/MOa4ICXk3GRPNSW_hu7ea52302e3a27606f8fc7fe424e78068_163741_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/MOa4ICXk3GRPNSW_hu7ea52302e3a27606f8fc7fe424e78068_163741_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="254"
+		data-flex-basis="609px"
+	
+></p>
+</li>
+<li>
+<p>或运算的实现：<code>or rd, ts, r</code></p>
+<p><img src="/post/computer-architecture-notes/9hPubLrmGTaN4DY.png"
+	width="1313"
+	height="515"
+	srcset="/post/computer-architecture-notes/9hPubLrmGTaN4DY_hub74b9cfdab810ed415ce2c36f5f2fa0a_180700_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/9hPubLrmGTaN4DY_hub74b9cfdab810ed415ce2c36f5f2fa0a_180700_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="254"
+		data-flex-basis="611px"
+	
+></p>
+</li>
+<li>
+<p>包含多种功能的运算单元：假设四种运算类型</p>
+<p><img src="/post/computer-architecture-notes/qWlgGyDj9EkzJOu.png"
+	width="1855"
+	height="1046"
+	srcset="/post/computer-architecture-notes/qWlgGyDj9EkzJOu_hu5fc2a2c34f609fdcc0776eee4784d118_1028028_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/qWlgGyDj9EkzJOu_hu5fc2a2c34f609fdcc0776eee4784d118_1028028_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="177"
+		data-flex-basis="425px"
+	
+></p>
+<ul>
+<li>
+<p>逻辑运算示例</p>
+<p><img src="/post/computer-architecture-notes/d3ngI6ZGE25PyFi.png"
+	width="1782"
+	height="1019"
+	srcset="/post/computer-architecture-notes/d3ngI6ZGE25PyFi_huce40c7fb5d9062d3b732086f76f054bd_649146_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/d3ngI6ZGE25PyFi_huce40c7fb5d9062d3b732086f76f054bd_649146_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="174"
+		data-flex-basis="419px"
+	
+></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="35-加法和减法的实现">3.5 加法和减法的实现</h3>
+<ul>
+<li>
+<p>二进制的加法</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th><img src="/post/computer-architecture-notes/CYXEDsliz5rnZRa.png"
+	width="549"
+	height="226"
+	srcset="/post/computer-architecture-notes/CYXEDsliz5rnZRa_hu7f23f8cfcf7acc4723b458287823f534_64039_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/CYXEDsliz5rnZRa_hu7f23f8cfcf7acc4723b458287823f534_64039_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="242"
+		data-flex-basis="583px"
+	
+></th>
+<th>两个4-bit二进制数相加：<br>1. 两个1-bit二进制数相加<br>2. 进位参与输入运算<br>3. 可以产生进位输出</th>
+</tr>
+</thead>
+</table></div>
+</li>
+<li>
+<p>半加器 Half Adder：将两个一位二进制数相加</p>
+<p><img src="/post/computer-architecture-notes/PLzO1oc34smqlXn.png"
+	width="398"
+	height="301"
+	srcset="/post/computer-architecture-notes/PLzO1oc34smqlXn_hu4681d16ac0dd1832c74982a79bf2c8db_35455_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/PLzO1oc34smqlXn_hu4681d16ac0dd1832c74982a79bf2c8db_35455_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="132"
+		data-flex-basis="317px"
+	
+></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>S</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>输入端口A、B</li>
+<li>输出端口S（和）、C（进位）</li>
+<li>不能将低位产生的进位作为输入参与运算</li>
+</ul>
+</li>
+<li>
+<p>全加器 Full Adder：由两个半加器构成</p>
+<p><img src="/post/computer-architecture-notes/ITPpMbLHyoC2jgY.png"
+	width="697"
+	height="388"
+	srcset="/post/computer-architecture-notes/ITPpMbLHyoC2jgY_huab9d22068a5d2d017042ddbc20364646_82271_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/ITPpMbLHyoC2jgY_huab9d22068a5d2d017042ddbc20364646_82271_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="179"
+		data-flex-basis="431px"
+	
+></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>A</th>
+<th>B</th>
+<th>$C_{in}$</th>
+<th>$C_{out}$</th>
+<th>S</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>
+<p>输入端口A、B、$C_{in}$（进位输入）</p>
+</li>
+<li>
+<p>输出端口S（和）、$C_{out}$（进位输出）</p>
+</li>
+<li>
+<p>4-bit加法器</p>
+<p><img src="/post/computer-architecture-notes/image-20220427111225983.png"
+	width="1807"
+	height="880"
+	srcset="/post/computer-architecture-notes/image-20220427111225983_hu3c615b517e86e30df24121537b845c0d_609268_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/image-20220427111225983_hu3c615b517e86e30df24121537b845c0d_609268_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="205"
+		data-flex-basis="492px"
+	
+></p>
+</li>
+</ul>
+</li>
+<li>
+<p>加法运算的实现</p>
+<p><img src="/post/computer-architecture-notes/JfNIuqDK9ykrT8s.png"
+	width="1993"
+	height="771"
+	srcset="/post/computer-architecture-notes/JfNIuqDK9ykrT8s_huf5f69d5304321387180780087b2bd1cc_466911_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/JfNIuqDK9ykrT8s_huf5f69d5304321387180780087b2bd1cc_466911_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="258"
+		data-flex-basis="620px"
+	
+></p>
+<ul>
+<li>
+<p>检查加法运算结果是否溢出（溢出 overflow：运算结果超出了正常的表示范围）</p>
+<p><img src="/post/computer-architecture-notes/HKJjFNtmsUy2YbM.png"
+	width="458"
+	height="331"
+	srcset="/post/computer-architecture-notes/HKJjFNtmsUy2YbM_hu30232277bddcd9062999781ffcb7486b_105680_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/HKJjFNtmsUy2YbM_hu30232277bddcd9062999781ffcb7486b_105680_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="138"
+		data-flex-basis="332px"
+	
+></p>
+<ul>
+<li>
+<p>仅针对有符号数运算</p>
+<ul>
+<li>两个正数相加，结果为负数</li>
+<li>两个负数相加，结果为正数</li>
+</ul>
+</li>
+<li>
+<p>进位$\nLeftrightarrow$溢出</p>
+<p><img src="/post/computer-architecture-notes/LCmyTOI3Al2wiWt.png"
+	width="1383"
+	height="506"
+	srcset="/post/computer-architecture-notes/LCmyTOI3Al2wiWt_hu59064a6f7b8ddedea37f0dbfb14068b8_499928_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/LCmyTOI3Al2wiWt_hu59064a6f7b8ddedea37f0dbfb14068b8_499928_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="273"
+		data-flex-basis="655px"
+	
+></p>
+</li>
+<li>
+<p>溢出的检查方法：最高位的进位输入<strong>不等于</strong>最高位的进位输出</p>
+<p><img src="/post/computer-architecture-notes/f4cRMDY6bkO8eGs.png"
+	width="1993"
+	height="835"
+	srcset="/post/computer-architecture-notes/f4cRMDY6bkO8eGs_hua28514fe7cdb7d7208f64ab4d11c50a2_505759_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/f4cRMDY6bkO8eGs_hua28514fe7cdb7d7208f64ab4d11c50a2_505759_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="238"
+		data-flex-basis="572px"
+	
+></p>
+</li>
+<li>
+<p>对“溢出”的处理方式（MIPS）：提供两类不同的指令分别处理</p>
+<ul>
+<li>将操作数看做有符号数，发生“溢出”时产生异常
+<ul>
+<li><code>add rd, rs, rt # R[rd] = R[rs] + R[rt]</code></li>
+<li><code>addi rt, rs, imm # R[rt] = R[rs] + SignExtImm</code></li>
+</ul>
+</li>
+<li>将操作数看做无符号数，不处理“溢出”
+<ul>
+<li><code>addu rd, rs, rt # R[rd] = R[rs] + R[rt]</code></li>
+<li><code>addiu rt, rs, imm # R[rt] = R[rs] + SignExtImm</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>对“溢出”的处理方式（x86）：溢出标志 OF（Overflow Flag ）</p>
+<ul>
+<li>若发生溢出，则自动设置OF=1；否则，OF=0</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>减法运算</p>
+<ul>
+<li>
+<p>减法运算均可转换为加法运算：$A-B=A+(-B)$</p>
+</li>
+<li>
+<p>补码表示的二进制数的相反数：<strong>按位取反，末位加一</strong></p>
+<p><img src="/post/computer-architecture-notes/CNyZIuJlW6xvQUR.png"
+	width="330"
+	height="399"
+	srcset="/post/computer-architecture-notes/CNyZIuJlW6xvQUR_hu08abff5cd6133121679f40f658e0e4ae_205090_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/CNyZIuJlW6xvQUR_hu08abff5cd6133121679f40f658e0e4ae_205090_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="82"
+		data-flex-basis="198px"
+	
+></p>
+<ul>
+<li>正数的原码=补码；负数如-3，原码1011，符号位不变，其余各位取反，末位加1：1100+1=1101</li>
+</ul>
+</li>
+<li>
+<p>在加法器的基础上实现减法器：$A+(-B)=A+(\textasciitilde B+1)$</p>
+<p><img src="/post/computer-architecture-notes/3guA9f2FCMNwzhs.png"
+	width="2080"
+	height="1038"
+	srcset="/post/computer-architecture-notes/3guA9f2FCMNwzhs_hu7bb76ede9a691693df91cdbc8f43787e_543551_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/3guA9f2FCMNwzhs_hu7bb76ede9a691693df91cdbc8f43787e_543551_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="200"
+		data-flex-basis="480px"
+	
+></p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="36-加法器的优化">3.6 加法器的优化</h3>
+<ul>
+<li>
+<p>行波进位加法器 Ripple-Carry Adder，RCA</p>
+<p><img src="/post/computer-architecture-notes/T5HPKFV67kSRxOL.png"
+	width="941"
+	height="144"
+	srcset="/post/computer-architecture-notes/T5HPKFV67kSRxOL_hubde6502d8c1940946b2d69070793e2b1_30495_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/T5HPKFV67kSRxOL_hubde6502d8c1940946b2d69070793e2b1_30495_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="653"
+		data-flex-basis="1568px"
+	
+></p>
+<ul>
+<li>
+<p>结构特点：低位全加器的$C_{out}$连接到高一位全加器$C_{in}$</p>
+</li>
+<li>
+<p>优点：电路布局简单，设计方便</p>
+</li>
+<li>
+<p>缺点：高位的运算必须等待地位的运算完成，延迟时间长</p>
+<ul>
+<li>
+<p>性能分析：4-bit RCA的门电路实现中的关键路径（延迟最长的路径）</p>
+<p><img src="/post/computer-architecture-notes/ip6WKVSdCOa5te7.png"
+	width="877"
+	height="484"
+	srcset="/post/computer-architecture-notes/ip6WKVSdCOa5te7_hub2bd30256ae823186945f4cd46ca997e_227735_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/ip6WKVSdCOa5te7_hub2bd30256ae823186945f4cd46ca997e_227735_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="181"
+		data-flex-basis="434px"
+	
+></p>
+<ul>
+<li>
+<p>线延迟、门延迟：在进行设计原理分析时，主要关注门延迟（T）</p>
+</li>
+<li>
+<p>总延迟时间：$(T+T)\times4+T=9T \to (T+T)\times n+T=(2n+1)T$</p>
+</li>
+<li>
+<p>32-bit RCA的性能分析</p>
+<p><img src="/post/computer-architecture-notes/EeBnUvH7LORcVj1.png"
+	width="1051"
+	height="509"
+	srcset="/post/computer-architecture-notes/EeBnUvH7LORcVj1_huca389ce84d27e67c0f9a9a790a0ae9eb_385517_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/EeBnUvH7LORcVj1_huca389ce84d27e67c0f9a9a790a0ae9eb_385517_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="206"
+		data-flex-basis="495px"
+	
+></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>加法器的优化思路：高位的运算必须等待低位的“进位输出信号”→能否提前计算出“进位输出信号”？</p>
+<ul>
+<li>
+<p>进位输出信号的分析</p>
+<ul>
+<li>$C_{i+1}=(A_i\cdot B_i)+(A_i\cdot C_i)+(B_i\cdot C_i)=(A_i\cdot B_i)+(A_i+B_i)\cdot C_i$：$A_i,B_i,C_i$中任意两个为1，则进位为1</li>
+<li>设生成（Generate）信号$G_i=A_i\cdot B_i$、传播（Propagate）信号$P_i=A_i+B_i$：均已知</li>
+<li>则$C_{i+1}=G_i+P_i\cdot C_i$
+<ul>
+<li>$C_{1}=G_{0}+P_{0}\cdot C_{0}$</li>
+<li>$C_{2}=G_{1}+P_{1}\cdot C_{1}=G_{1}+P_{1}\cdot(G_{0}+P_{0}\cdot C_{0})=G_{1}+P_{1}\cdot G_{0}+P_{1}\cdot P_{0}\cdot C_{0}$</li>
+<li>$C_{3}=G_{2}+P_{2}\cdot C_{2}=G_{2}+P_{2}\cdot(G_{1}+P_{1}\cdot G_{0}+P_{1}\cdot P_{0}\cdot C_{0})=G_{2}+P_{2}\cdot G_{1}+P_{2}\cdot P_{1}\cdot G_{0}+P_{2}\cdot P_{1}\cdot P_{0}\cdot C_{0}$</li>
+<li>$C_{4}=G_{3}+P_{3}\cdot C_{3}=G_{3}+P_{3}\cdot(G_{2}+P_{2}\cdot G_{1}+P_{2}\cdot P_{1}\cdot G_{0}+P_{2}\cdot P_{1}\cdot P_{0}\cdot C_{0})=G_{3}+P_{3}\cdot G_{2}+P_{3}\cdot P_{2}\cdot G_{1}+P_{3}\cdot P_{2}\cdot P_{1}
+\cdot G_{0}+P_{3}\cdot P_{2}\cdot P_{1}\cdot P_{0}\cdot C_{0}$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>提前计算$C_4$的电路实现</p>
+<p><img src="/post/computer-architecture-notes/IRA2ypgUVDNTJ4L.png"
+	width="1641"
+	height="1151"
+	srcset="/post/computer-architecture-notes/IRA2ypgUVDNTJ4L_hu77ff8683683b59c295564c2a3bfcf1ab_533017_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/IRA2ypgUVDNTJ4L_hu77ff8683683b59c295564c2a3bfcf1ab_533017_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="142"
+		data-flex-basis="342px"
+	
+></p>
+<ul>
+<li>优点：计算$C_{i+1}$的延迟时间固定为三级门延迟，与加法器的位数无关</li>
+<li>缺点：如果进一步拓宽加法器的位数，则电路变得非常复杂</li>
+</ul>
+</li>
+<li>
+<p>超前进位加法器 Carry-Lookahead Adder，CLA</p>
+<p><img src="/post/computer-architecture-notes/WvmbeF4rZctYfsh.png"
+	width="2095"
+	height="864"
+	srcset="/post/computer-architecture-notes/WvmbeF4rZctYfsh_hub1b178848975549f5dba607bdc16785d_852095_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/WvmbeF4rZctYfsh_hub1b178848975549f5dba607bdc16785d_852095_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="242"
+		data-flex-basis="581px"
+	
+></p>
+<p>* 4-bit RCA总延迟时间为9T</p>
+<ul>
+<li>
+<p>32-bit加法器采用行波进位总延迟时间为65T，而采用完全的超前进位理想的总延迟时间为4T，但实际上电路过于复杂而难以实现</p>
+</li>
+<li>
+<p>通常采用多个小规模的CLA拼接而成（如用4个8-bit的CLA以RCA的方式连接）</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:right"></th>
+<th style="text-align:center">延迟时间</th>
+<th style="text-align:center">时钟频率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right"><strong>32-bit RCA</strong></td>
+<td style="text-align:center">1.3ns</td>
+<td style="text-align:center">769MHz</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>单个CLA</strong></td>
+<td style="text-align:center">0.08ns</td>
+<td style="text-align:center">/</td>
+</tr>
+<tr>
+<td style="text-align:right"><strong>4级CLA</strong></td>
+<td style="text-align:center">0.26ns</td>
+<td style="text-align:center">3.84GHz</td>
+</tr>
+</tbody>
+</table></div>
+<p>* 注：参照28nm制造工艺，门延迟设为0.02ns</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="第四讲--乘法器和除法器multiplier-and-divider">第四讲  乘法器和除法器（Multiplier and Divider）</h2>
+<blockquote>
+<p>内容要点：乘法运算，乘法器的实现，除法运算，除法器的实现</p>
+</blockquote>
+<h3 id="41-乘法的运算过程">4.1 乘法的运算过程</h3>
+<h2 id="第五讲--单周期处理器single-cycle-processor">第五讲  单周期处理器（Single Cycle Processor）</h2>
+<p>内容要点：控制器，数据通路</p>
+<h2 id="第六讲--流水线处理器pipelined-processor">第六讲  流水线处理器（Pipelined Processor）</h2>
+<p>内容要点：流水线，相关和冒险</p>
+<h2 id="第七讲--存储层次结构memory-hierarchy">第七讲  存储层次结构（Memory Hierarchy）</h2>
+<p>内容要点：高速缓存，主存</p>
+<h2 id="第八讲--中断与异常interruption-and-exception">第八讲  中断与异常（Interruption and Exception）</h2>
+<p>内容要点：中断与异常的异同，中断处理的过程</p>
+<h2 id="第九讲--输入输出设备inputoutput-devices">第九讲  输入输出设备（Input/Output Devices）</h2>
+<p>内容要点：基本的输入输出控制方式，常用的输入输出设备类型</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/computer-architecture/">Computer Architecture</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-ND 4.0</span>
+    </section>
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            Last updated on Apr 29, 2022 22:24 CST
+        </span>
+    </section></footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.css"integrity="sha384-RZU/ijkSsFbcmivfdRBQDtwuwVqK7GMOw6IMvKyeWL2K5UAlyp6WonmB8m7Jd0Hn"crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/katex.min.js"integrity="sha384-pK1WpvzWVBQiP0/GjnvRxV4mOb0oxFuyRxJlk6vVw146n3egcN5C925NCP7a7BY8"crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.13.13/dist/contrib/auto-render.min.js"integrity="sha384-vZTG03m&#43;2yp6N6BNi5iM4rW4oIwk5DfcNdFfxkk9ZWpDriOkXX8voJBFrAO7MpVl"crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-contents--wrapper">
+    <h2 class="section-title">Related contents</h2>
+    <div class="related-contents">
+        <div class="flex article-list--tile">
+            
+                
+<article class="has-image">
+    <a href="/post/basic-front-end-development-libraries/">
+        
+        
+            <div class="article-image">
+                <img src="/post/basic-front-end-development-libraries/cover.117cc425d5d99fe88f92f9a94ac2ed72_hud007b7c6718c8946113d57264ec40bdd_186528_250x150_fill_q75_h2_box_smart1_2.webp" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Basic Front-end Development Libraries"
+                        
+                        data-hash="md5-EXzEJdXZn&#43;iPkvmpSsLtcg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Basic Front-end Development Libraries</h2>
+        </div>
+    </a>
+</article>
+            
+                
+<article class="has-image">
+    <a href="/post/basic-javascript/">
+        
+        
+            <div class="article-image">
+                <img src="/post/basic-javascript/cover.82183084a672e32c6531d98f62e9ee31_hu07ec2463c899400e79c7f27c20c15cfd_90120_250x150_fill_q75_box_smart1.jpg" 
+                        width="250" 
+                        height="150" 
+                        loading="lazy"
+                        alt="Featured image of post Basic JavaScript"
+                        
+                        data-hash="md5-ghgwhKZy4yxlMdmPYunuMQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Basic JavaScript</h2>
+        </div>
+    </a>
+</article>
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "yana-10" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (DISQUS) {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2021 - 
+        
+        2022 Yana!
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.11.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css"integrity="sha256-c0uckgykQ9v5k&#43;IqViZOZKc47Jn7KQil4/MP3ySA3F8="crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css"integrity="sha256-SBLU4vv6CA6lHsZ1XyTdhyjJxCjPif/TRkjnsyGAGnE="crossorigin="anonymous"
+            >
+
+            </main>
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Table of contents</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#第一讲--计算机基本结构basic-components-of-a-computer">第一讲  计算机基本结构（Basic Components of a Computer）</a>
+      <ol>
+        <li><a href="#11-电子计算机的兴起现代电子计算机之父冯诺依曼">1.1 电子计算机的兴起——“现代电子计算机之父”冯·诺依曼</a></li>
+        <li><a href="#12-冯诺依曼结构的要点">1.2 冯·诺依曼结构的要点</a></li>
+        <li><a href="#13-计算机结构的简化模型模型机">1.3 计算机结构的简化模型（模型机）</a></li>
+        <li><a href="#14-计算机执行指令的过程">1.4 计算机执行指令的过程</a></li>
+        <li><a href="#15-计算机输入和输出">1.5 计算机输入和输出</a></li>
+        <li><a href="#16-冯诺依曼结构的具体实现">1.6 冯·诺依曼结构的具体实现</a></li>
+      </ol>
+    </li>
+    <li><a href="#第二讲--指令系统体系结构instruction-set-architecture">第二讲  指令系统体系结构（Instruction Set Architecture）</a>
+      <ol>
+        <li><a href="#21-设计自己的计算机">2.1 设计自己的计算机</a></li>
+        <li><a href="#22-x86体系结构">2.2 x86体系结构</a></li>
+        <li><a href="#23-x86指令简介">2.3 x86指令简介</a></li>
+        <li><a href="#24-复杂的x86指令举例">2.4 复杂的x86指令举例</a></li>
+        <li><a href="#25-mips体系结构">2.5 MIPS体系结构</a></li>
+        <li><a href="#26-mips指令简介">2.6 MIPS指令简介</a></li>
+      </ol>
+    </li>
+    <li><a href="#第三讲--算术逻辑单元arithmetic-logic-unit">第三讲  算术逻辑单元（Arithmetic Logic Unit）</a>
+      <ol>
+        <li><a href="#31-算术运算和逻辑运算">3.1 算术运算和逻辑运算</a></li>
+        <li><a href="#32-门电路的基本原理">3.2 门电路的基本原理</a></li>
+        <li><a href="#33-寄存器的基本原理">3.3 寄存器的基本原理</a></li>
+        <li><a href="#34-逻辑运算的实现">3.4 逻辑运算的实现</a></li>
+        <li><a href="#35-加法和减法的实现">3.5 加法和减法的实现</a></li>
+        <li><a href="#36-加法器的优化">3.6 加法器的优化</a></li>
+      </ol>
+    </li>
+    <li><a href="#第四讲--乘法器和除法器multiplier-and-divider">第四讲  乘法器和除法器（Multiplier and Divider）</a>
+      <ol>
+        <li><a href="#41-乘法的运算过程">4.1 乘法的运算过程</a></li>
+      </ol>
+    </li>
+    <li><a href="#第五讲--单周期处理器single-cycle-processor">第五讲  单周期处理器（Single Cycle Processor）</a></li>
+    <li><a href="#第六讲--流水线处理器pipelined-processor">第六讲  流水线处理器（Pipelined Processor）</a></li>
+    <li><a href="#第七讲--存储层次结构memory-hierarchy">第七讲  存储层次结构（Memory Hierarchy）</a></li>
+    <li><a href="#第八讲--中断与异常interruption-and-exception">第八讲  中断与异常（Interruption and Exception）</a></li>
+    <li><a href="#第九讲--输入输出设备inputoutput-devices">第九讲  输入输出设备（Input/Output Devices）</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<style>
+    @font-face {
+      font-family: yhb;
+      src: url("https://crap.hongb.infonts/handwriting.ttf");
+    }
+    
+    :root {
+        --base-font-family: yhb, "Lato", var(--sys-font-family), var(--zh-font-family);
+    }
+</style>
+    </body>
+</html>

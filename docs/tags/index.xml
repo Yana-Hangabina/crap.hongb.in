@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Tags on Yana!</title>
+        <link>https://crap.hongb.in/tags/</link>
+        <description>Recent content in Tags on Yana!</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Mon, 14 Mar 2022 20:45:48 +0800</lastBuildDate><atom:link href="https://crap.hongb.in/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Computer Architecture</title>
+        <link>https://crap.hongb.in/tags/computer-architecture/</link>
+        <pubDate>Mon, 14 Mar 2022 20:45:48 +0800</pubDate>
+        
+        <guid>https://crap.hongb.in/tags/computer-architecture/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Bootstrap</title>
+        <link>https://crap.hongb.in/tags/bootstrap/</link>
+        <pubDate>Mon, 21 Feb 2022 20:38:19 +0800</pubDate>
+        
+        <guid>https://crap.hongb.in/tags/bootstrap/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>freeCodeCamp</title>
+        <link>https://crap.hongb.in/tags/freecodecamp/</link>
+        <pubDate>Mon, 21 Feb 2022 20:38:19 +0800</pubDate>
+        
+        <guid>https://crap.hongb.in/tags/freecodecamp/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Front-end Development Libraries</title>
+        <link>https://crap.hongb.in/tags/front-end-development-libraries/</link>
+        <pubDate>Mon, 21 Feb 2022 20:38:19 +0800</pubDate>
+        
+        <guid>https://crap.hongb.in/tags/front-end-development-libraries/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Programming</title>
+        <link>https://crap.hongb.in/tags/programming/</link>
+        <pubDate>Mon, 21 Feb 2022 20:38:19 +0800</pubDate>
+        
+        <guid>https://crap.hongb.in/tags/programming/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>React</title>
+        <link>https://crap.hongb.in/tags/react/</link>
+        <pubDate>Mon, 21 Feb 2022 20:38:19 +0800</pubDate>
+        
+        <guid>https://crap.hongb.in/tags/react/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>Redux</title>
+        <link>https://crap.hongb.in/tags/redux/</link>
+        <pubDate>Mon, 21 Feb 2022 20:38:19 +0800</pubDate>
+        
+        <guid>https://crap.hongb.in/tags/redux/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>JavaScript</title>
+        <link>https://crap.hongb.in/tags/javascript/</link>
+        <pubDate>Sat, 15 Jan 2022 11:46:17 +0800</pubDate>
+        
+        <guid>https://crap.hongb.in/tags/javascript/</guid>
+        <description></description>
+        </item>
+        
+    </channel>
+</rss>

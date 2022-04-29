@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Computer Architecture on Yana!</title>
+        <link>https://crap.hongb.in/tags/computer-architecture/</link>
+        <description>Recent content in Computer Architecture on Yana!</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Mon, 14 Mar 2022 20:45:48 +0800</lastBuildDate><atom:link href="https://crap.hongb.in/tags/computer-architecture/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Computer Architecture Notes</title>
+        <link>https://crap.hongb.in/post/computer-architecture-notes/</link>
+        <pubDate>Mon, 14 Mar 2022 20:45:48 +0800</pubDate>
+        
+        <guid>https://crap.hongb.in/post/computer-architecture-notes/</guid>
+        <description>&lt;img src="https://crap.hongb.in/post/computer-architecture-notes/cover.jpg" alt="Featured image of post Computer Architecture Notes" /&gt;第一讲 计算机基本结构（Basic Components of a Computer） 内容要点：冯·诺伊曼结构，计算机执行指令的过程 1.1 电子计算机的兴起——“现代电子计算机</description>
+        </item>
+        
+    </channel>
+</rss>

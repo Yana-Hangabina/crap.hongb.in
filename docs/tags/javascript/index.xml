@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>JavaScript on Yana!</title>
+        <link>https://crap.hongb.in/tags/javascript/</link>
+        <description>Recent content in JavaScript on Yana!</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>en-us</language>
+        <lastBuildDate>Sat, 15 Jan 2022 11:46:17 +0800</lastBuildDate><atom:link href="https://crap.hongb.in/tags/javascript/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>Basic JavaScript</title>
+        <link>https://crap.hongb.in/post/basic-javascript/</link>
+        <pubDate>Sat, 15 Jan 2022 11:46:17 +0800</pubDate>
+        
+        <guid>https://crap.hongb.in/post/basic-javascript/</guid>
+        <description>&lt;img src="https://crap.hongb.in/post/basic-javascript/cover.jpg" alt="Featured image of post Basic JavaScript" /&gt;JavaScript高级程序设计（第4版） 第1章 什么是 JavaScript JavaScript 实现 核心 (ECMAScript): 语法、类型、语句、关建字、保留字、操作符、全局对象 文档对象模型 (Document Object Mod</description>
+        </item>
+        
+    </channel>
+</rss>
