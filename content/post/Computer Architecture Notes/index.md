@@ -3,7 +3,7 @@ title: "Computer Architecture Notes"
 date: 2022-03-14T20:45:48+08:00
 draft: false
 description: 'Notes on studying "Computer Architecture" offered by Peking University on Coursera.com.'
-lastmod: 2022-04-29T22:24:34+08:00
+lastmod: 2022-04-30T15:26:51+08:00
 image: "cover.jpg"
 comments: true
 hidden: false
@@ -22,7 +22,7 @@ tags:
 ### 1.1 电子计算机的兴起——“现代电子计算机之父”冯·诺依曼
 
 - *1939年，艾奥瓦州立大学，约翰·阿塔纳索夫、克利夫·贝里，ABC计算机*
-- 1946年2月14日，美国宾夕法尼亚大学，约翰·莫克利、约翰·埃克特，世界上第一台**通用**电子计算机ENIAC*（Electronic Numerical Integrator And Computer，电子数字积分器和机算器，18000个电子管、十进制、每秒5000次加法、150千瓦、170平方米、30吨、50万美元）*
+- 1946年2月14日，美国宾夕法尼亚大学，约翰·莫克利、约翰·埃克特，世界上第一台**通用**电子计算机ENIAC *（Electronic Numerical Integrator And Computer，电子数字积分器和机算器，18000个电子管、十进制、每秒5000次加法、150千瓦、170平方米、30吨、50万美元）*
   - 冯·诺依曼对ENIAC的分析：ENIAC的开关定位和转插线只不过代表着一些数字信息，完全可以像受程序管理的数据一样，存放于主存储器中。（**“存储程序”的概念**）
   - 1945年6月30日，冯·诺依曼《关于EDVAC的报告草案》*（美国陆军军械部-宾夕法尼亚大学摩尔电机工程学院）*：该报告所描述的计算机结构，即为“冯·诺依曼计算机结构”
     - 1949年5月6日，英国剑桥大学数学实验室，莫里斯·威尔克斯，以EDVAC为蓝本设计和建造的EDSAC（Electronic Delay Storage Automatic Calculator，电子延迟储存自动计算机）：第一台**实用的**储存程序式计算机
@@ -31,11 +31,11 @@ tags:
         - 存储器：水银延迟线
         - 输入设备：从穿孔纸带输入
         - 输出设备：电传打印机
-    - 1949年8月交付的EDVAC*（Electronic Discrete Variable Automatic Computer，离散变量电子计算机）*的主要特点：
+    - 1949年8月交付的EDVAC *（Electronic Discrete Variable Automatic Computer，离散变量电子计算机）* 的主要特点：
       - 实现“存储程序”概念，大幅提升了任务效率
       - 指令和数据采用二进制，极大简化了逻辑线路
       - 由五个基本部分组成：运算器，控制器，存储器、输入设备，输出设备
-    - 1951年，计开始于埃克特-莫克利计算机公司（EMCC）完成于雷明顿·兰德公司（Remington Rand）的UNIVAC*（UNIVersal Automatic Computer，每秒10万次加法，主频2.25MHz）*交付美国人口普查局
+    - 1951年，计开始于埃克特-莫克利计算机公司（EMCC）完成于雷明顿·兰德公司（Remington Rand）的UNIVAC *（UNIVersal Automatic Computer，每秒10万次加法，主频2.25MHz）* 交付美国人口普查局
       - 1952年，UNIVAC统计选票率先准确预测艾森·豪威尔赢得选举，因此和电子计算机获得了广泛的关注
       - UNIVAC：开启了商用计算机的时代
         - 1950年代，众多公司进入电子计算机领域
