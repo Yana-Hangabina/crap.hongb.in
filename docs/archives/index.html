@@ -12,15 +12,24 @@
 <meta property='og:type' content='article'><meta property='article:section' content='Page' /><meta property='article:published_time' content='2019-05-28T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2019-05-28T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="Archives">
 <meta name="twitter:description" content="">
-    <link rel="shortcut icon" href="favicon.ico" />
-
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-C5W240YHG7"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-C5W240YHG7', { 'anonymize_ip': false });
+}
+</script>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
     </head>
     <body class="template-archives">
     <script>
         (function() {
             const colorSchemeKey = 'StackColorScheme';
             if(!localStorage.getItem(colorSchemeKey)){
-                localStorage.setItem(colorSchemeKey, "auto");
+                localStorage.setItem(colorSchemeKey, "dark");
             }
         })();
     </script><script>
@@ -281,6 +290,8 @@
     </section>
     
     <section class="powerby">
+        
+            <img src="/img/footer.png" alt="EYE" width="42" height="42"> <br/>
         Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
         Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.11.0">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
     </section>

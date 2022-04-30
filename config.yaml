@@ -1,4 +1,4 @@
-baseurl: https://crap.hongb.in
+baseurl: https://crap.hongb.in/
 languageCode: en-us
 theme: stack
 paginate: 5
@@ -13,7 +13,7 @@ module:
 disqusShortname: yana-10
 
 # GA Tracking ID
-googleAnalytics:
+googleAnalytics: G-C5W240YHG7
 
 # Theme i18n support
 # Available values: ar, ca, de, el, en, es, fr, id, it, ja, ko, nl, pt-br, th, uk, zh-cn, zh-hk, zh-tw
@@ -32,11 +32,11 @@ params:
         - post
     featuredImageField: image
     rssFullContent: false
-    favicon: favicon.ico
+    favicon: 
 
     footer:
         since: 2021
-        customText: 
+        customText: <img src="/img/footer.png" alt="EYE" width="42" height="42">
 
     dateFormat:
         published: Jan 02, 2006
@@ -103,7 +103,7 @@ params:
         toggle: true
 
         # Available values: auto, light, dark
-        default: auto
+        default: dark
 
     imageProcessing:
         cover:
