@@ -1,9 +1,0 @@
-[submodule "themes/stack"]
-	path = themes/stack
-	url = https://github.com/CaiJimmy/hugo-theme-stack
-[submodule "themes/archie"]
-	path = themes/archie
-	url = https://github.com/athul/archie
-[submodule "themes/novela"]
-	path = themes/novela
-	url = https://github.com/forestryio/hugo-theme-novela
