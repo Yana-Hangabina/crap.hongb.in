@@ -24,6 +24,13 @@ if (!doNotTrack) {
 }
 </script>
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="preload" href="/fonts/handwriting.ttf" as="font" type="font/ttf" />
+
+<style>
+    :root {
+        --base-font-family: "阎鸿彬日常手写体", "Lato", var(--sys-font-family), var(--zh-font-family);
+    }
+</style>
     </head>
     <body class="
     article-page
@@ -125,6 +132,39 @@ if (!doNotTrack) {
 
                 
                 <span>Archives</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/movies/' >
+                
+                
+                
+                    <svg class="icon icon-tabler icon-tabler-movie" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke-width="2" stroke="currentColor" fill="currentColor" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M488 416a104 104 0 1 1 0-208 104 104 0 1 1 0 208zm0-144c-22 0-40 18-40 40s18 40 40 40 40-18 40-40-18-40-40-40zM312 640a104 104 0 1 1 0-208 104 104 0 1 1 0 208zm0-144c-22 0-40 18-40 40s18 40 40 40 40-18 40-40-18-40-40-40zm224 320a104 104 0 1 1 0-208 104 104 0 1 1 0 208zm0-144c-22 0-40 18-40 40s18 40 40 40 40-18 40-40-18-40-40-40zm176-80a104 104 0 1 1 0-208 104 104 0 1 1 0 208zm0-144c-22 0-40 18-40 40s18 40 40 40 40-18 40-40-18-40-40-40z"/>
+  <path d="M928 960H512C266 960 64 758 64 512S266 64 512 64a450 450 0 0 1 314 768c-13 13-34 13-45 0-13-13-13-34 0-45a385 385 0 0 0-269-659c-211 0-384 173-384 384s173 384 384 384h416c18 0 32 14 32 32s-14 32-32 32z"/>
+</svg>
+
+                
+                <span>Movies</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/books/' >
+                
+                
+                
+                    <svg class="icon icon-tabler icon-tabler-book" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="24" height="24" stroke-width="2" stroke="currentColor" fill="currentColor" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M841 87h-4l-296 81v0h-57L187 87h-4c-48 0-86 38-86 86v595c0 23 9 43 26 59 13 11 30 20 52 26l308 84h58c155-41 307-83 308-84h1c22-7 38-15 50-26 18-15 27-36 27-59V173c0-47-38-86-86-86zM190 797c-35-10-35-23-35-29V173c0-14 11-26 24-28l304 83v649l-293-80zm679-29c0 6 0 18-36 29l-292 79V228l304-82c13 1 24 13 24 27v595z"/>
+</svg>
+
+                
+                <span>Books</span>
             </a>
         </li>
         
@@ -1776,15 +1816,6 @@ if (!doNotTrack) {
         document.head.appendChild(customFont);
     }());
 </script>
-<style>
-    @font-face {
-      font-family: yhb;
-      src: url("https://crap.hongb.in/fonts/handwriting.ttf");
-    }
-    
-    :root {
-        --base-font-family: yhb, "Lato", var(--sys-font-family), var(--zh-font-family);
-    }
-</style>
+
     </body>
 </html>

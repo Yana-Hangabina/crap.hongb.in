@@ -1,0 +1,299 @@
+{{ define "body-class" }}template-movies{{ end }}
+{{ define "main" }}
+<article class="main-article" style="
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    ">
+    <header class="article-header">
+        <h2 class="article-title">{{.Title}}</h2>
+    </header>
+    <style>
+        .filter,
+        .filter * {
+            box-sizing: border-box
+        }
+
+        .movie-list {
+            display: flex;
+            flex-wrap: wrap;
+            margin: var(--card-padding) 0 0 0;
+            background: 0 0;
+            line-height: 100%;
+            align-content: space-between;
+        }
+
+        .movie-items {
+            width: 16%;
+            margin: 0 2% 30px;
+            padding: 0;
+            font-size: 15px;
+        }
+
+        .movie-items a {
+            text-decoration: none;
+        }
+
+        .movie-name {
+            margin-top: 12px;
+            line-height: 1.3;
+            max-height: 2.6rem;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .rate {
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+            margin-top: 5px;
+            min-height: 16px;
+            line-height: 1
+        }
+
+        .poster-image {
+            position: relative;
+            min-height: 87px;
+            overflow: hidden;
+            color: transparent
+        }
+
+        .poster-image:hover {
+            box-shadow: rgb(48 55 66 / 30%) 0 1rem 2.1rem
+        }
+
+        .star {
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center
+        }
+
+        .star-lit {
+            margin-right: 1px;
+            width: 12px;
+            height: 12px;
+            color: #fccd59
+        }
+
+        .star-off {
+            margin-right: 1px;
+            width: 12px;
+            height: 12px;
+            color: #eee
+        }
+
+        .rate-score {
+            margin-left: 5px;
+            color: #555;
+            font-size: 14px
+        }
+
+        .sorter {
+            padding-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .filter-all {
+            display: inline-block;
+            text-decoration: none;
+            font-weight: bolder;
+        }
+
+        .filter-text {
+            display: inline-block;
+            color: var(--card-text-color-main);
+            text-decoration: none;
+            padding: 0 5px
+        }
+
+        .filter-text.active,
+        .sort-by-item.active {
+            color: var(--accent-color-text);
+            background: var(--accent-color);
+            border-radius: var(--tag-border-radius);
+        }
+
+        .hide {
+            display: none
+        }
+
+        .sort-by {
+            text-align: right;
+            margin-top: -15px
+        }
+
+        .sort-by-item {
+            margin-left: 10px;
+            padding: 5px 5px;
+            line-height: 20px
+        }
+
+        .sort-by-item svg {
+            margin-right: 5px
+        }
+
+        .poster img {
+            max-width: 100% !important;
+            height: auto !important;
+            display: block !important;
+            vertical-align: middle !important
+        }
+
+        @media(min-width:1024px) {
+            .lg\:col-span-6 {
+                grid-column: span 6/span 6 !important
+            }
+
+            .lg\:col-start-2 {
+                grid-column-start: 2 !important
+            }
+        }
+
+        @media (max-width:550px) {
+
+            .star,
+            .mobile-hidden {
+                display: none
+            }
+        }
+    </style>
+    <script type="text/javascript">
+        function search(e) {
+            document.querySelectorAll('.movie-items').forEach(item => item.classList.add('hide'));
+            document.querySelector(`.filter-text.active[data-search="${e.target.dataset.search}"]`)?.classList.remove('active');
+            if (e.target.dataset.value) {
+                e.target.classList.add('active');
+            }
+            const searchItems = document.querySelectorAll('.filter-text.active');
+            const attributes = Array.from(searchItems, searchItem => {
+                const property = `data-${searchItem.dataset.search}`;
+                const logic = searchItem.dataset.method === 'contain' ? '*' : '^';
+                const value = searchItem.dataset.method === 'contain' ? `${searchItem.dataset.value}` : searchItem.dataset.value;
+                return `[${property}${logic}='${value}']`;
+            });
+            const selector = `.movie-items${attributes.join('')}`;
+            document.querySelectorAll(selector).forEach(item => item.classList.remove('hide'));
+        }
+        window.addEventListener('click', function (e) {
+            if (e.target.classList.contains('filter-item')) {
+                e.preventDefault();
+                search(e);
+            }
+        });
+        function sort(e) {
+            const sortBy = e.target.dataset.order;
+            const style = document.createElement('style');
+            style.classList.add('sort-order-style');
+            document.querySelector('style.sort-order-style')?.remove();
+            document.querySelector('.sort-by-item.active')?.classList.remove('active');
+            e.target.classList.add('active');
+            if (sortBy === 'rating') {
+                const movies = Array.from(document.querySelectorAll('.movie-items'));
+                movies.sort((movieA, movieB) => {
+                    const ratingA = parseFloat(movieA.dataset.rating) || 0;
+                    const ratingB = parseFloat(movieB.dataset.rating) || 0;
+                    if (ratingA === ratingB) {
+                        return 0;
+                    }
+                    return ratingA > ratingB ? -1 : 1;
+                });
+                const stylesheet = movies.map((movie, idx) => `.movie-items[data-rating="${movie.dataset.rating}"] { order: ${idx}; }`).join('\r\n');
+                style.innerHTML = stylesheet;
+                document.body.appendChild(style);
+            }
+        }
+        window.addEventListener('click', function (e) {
+            if (e.target.classList.contains('sort-by-item')) {
+                e.preventDefault();
+                sort(e);
+            }
+        });
+    </script>
+    <section class="article-content" style="padding: var(--card-padding) 0 0 0;">
+        <div class="lg:col-start-2 lg:col-span-6">
+            {{$movies := getCSV "," "assets/data/douban/movie.csv" }}
+            {{$scratch := newScratch}}
+            {{$scratch.Add "genres" slice}}
+            {{range $idx, $movie := $movies}}
+            {{if ne $idx 0}}
+            {{$scratch.Set "genres" (union ($scratch.Get "genres") (split (index $movie 7) ","))}}
+            {{end}}
+            {{end}}
+            <div class="filter">
+                <div class="mobile-hidden">
+                    <a href="javascript:void 0;" class="filter-item filter-all" data-search="genres"
+                        data-method="contain" data-value="">全部</a>
+                    {{range $genre := $scratch.Get "genres"}}
+                    <a href="javascript:void 0;" class="filter-item filter-text" data-search="genres"
+                        data-method="contain" data-value="{{$genre}}">{{$genre}}</a>
+                    {{end}}
+                </div>
+                <div class="mobile-hidden">
+                    <a href="javascript:void 0;" class="filter-item filter-all" data-search="year" data-method="equal"
+                        data-value="">全部</a>
+                    {{range $year := (seq 2022 -1 2009)}}
+                    <a href="javascript:void 0;" class="filter-item filter-text" data-search="year" data-method="equal"
+                        data-value="{{$year}}">{{$year}}</a>
+                    {{end}}
+                </div>
+                <div class="mobile-hidden">
+                    <a href="javascript:void 0;" class="filter-item filter-all" data-search="star" data-method="equal"
+                        data-value="">全部</a>
+                    <a href="javascript:void 0;" class="filter-item filter-text" data-search="star" data-method="equal"
+                        data-value="5">五星</a>
+                    <a href="javascript:void 0;" class="filter-item filter-text" data-search="star" data-method="equal"
+                        data-value="4">四星</a>
+                    <a href="javascript:void 0;" class="filter-item filter-text" data-search="star" data-method="equal"
+                        data-value="3">三星</a>
+                    <a href="javascript:void 0;" class="filter-item filter-text" data-search="star" data-method="equal"
+                        data-value="2">二星</a>
+                    <a href="javascript:void 0;" class="filter-item filter-text" data-search="star" data-method="equal"
+                        data-value="1">一星</a>
+                    <a href="javascript:void 0;" class="filter-item filter-text" data-search="star" data-method="equal"
+                        data-value="0">零星</a>
+                </div>
+            </div>
+            <div class="sorter sort-by">
+                <a href="javascript:void 0;" class="sort-by-item active" data-order="time">时间排序</a>
+                <a href="javascript:void 0;" class="sort-by-item" data-order="rating">评分排序</a>
+            </div>
+            <div class="movie-list">
+                {{range $idx, $movie := $movies}}
+                {{if ne $idx 0 }}
+                <div class="movie-items" data-year="{{index $movie 9}}" data-star="{{index $movie 8}}"
+                    data-rating="{{index $movie 6}}" data-genres="{{index $movie 7}}">
+                    <a rel="link" href="{{index $movie 5}}" target="_blank">
+                        <div class="poster poster-image">
+                            <div class="lazyload-wrapper ">
+                                <img src="{{index $movie 3}}" referrer-policy="no-referrer" loading="lazy"
+                                    alt="{{index $movie 1}}" width="150" height="220">
+                            </div>
+                        </div>
+                        <div class="movie-name" title="{{index $movie 1}}">{{index $movie 1}}</div>
+                        <div class="rate">
+                            <span class="star">
+                                {{range $star := (seq 0 2 8)}}
+                                <svg viewBox="0 0 24 24" width="24" height="24"
+                                    class="{{if gt (index $movie 6) $star}}star-lit{{else}}star-off{{end}}">
+                                    <path fill="none" d="M0 0h24v24H0z"></path>
+                                    <path fill="currentColor"
+                                        d="M12 18.26l-7.053 3.948 1.575-7.928L.587 8.792l8.027-.952L12 .5l3.386 7.34 8.027.952-5.935 5.488 1.575 7.928z">
+                                    </path>
+                                </svg>
+                                {{end}}
+                            </span>
+                            <span class="rate-score">{{index $movie 6}}</span>
+                        </div>
+                    </a>
+                </div>
+                {{end}}
+                {{end}}
+            </div>
+        </div>
+    </section>
+</article>
+
+{{ partialCached "footer/footer" . }}
+{{ end }}
