@@ -9,7 +9,7 @@
 <meta property='og:description' content='Notes on studying &#34;Computer Architecture&#34; offered by Peking University on Coursera.com.'>
 <meta property='og:url' content='https://crap.hongb.in/post/computer-architecture-notes/'>
 <meta property='og:site_name' content='Yana!'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Computer Architecture' /><meta property='article:published_time' content='2022-03-14T20:45:48&#43;08:00'/><meta property='article:modified_time' content='2022-04-30T15:26:51&#43;08:00'/><meta property='og:image' content='https://crap.hongb.in/post/computer-architecture-notes/cover.jpg' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='Computer Architecture' /><meta property='article:published_time' content='2022-03-14T20:45:48&#43;08:00'/><meta property='article:modified_time' content='2022-05-06T14:10:39&#43;08:00'/><meta property='og:image' content='https://crap.hongb.in/post/computer-architecture-notes/cover.jpg' />
 <meta name="twitter:title" content="Computer Architecture Notes">
 <meta name="twitter:description" content="Notes on studying &#34;Computer Architecture&#34; offered by Peking University on Coursera.com."><meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content='https://crap.hongb.in/post/computer-architecture-notes/cover.jpg' />
@@ -283,7 +283,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    23 minute read
+                    26 minute read
                 </time>
             </div>
         
@@ -3441,6 +3441,363 @@ if (!doNotTrack) {
 <p>内容要点：乘法运算，乘法器的实现，除法运算，除法器的实现</p>
 </blockquote>
 <h3 id="41-乘法的运算过程">4.1 乘法的运算过程</h3>
+<ul>
+<li>
+<p>简化的乘法运算过程</p>
+<p><img src="/post/computer-architecture-notes/image-20220504232214396.png"
+	width="1692"
+	height="677"
+	srcset="/post/computer-architecture-notes/image-20220504232214396_hua351ffae820d3142661de320c3bca56a_650963_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/image-20220504232214396_hua351ffae820d3142661de320c3bca56a_650963_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="249"
+		data-flex-basis="599px"
+	
+></p>
+<ul>
+<li>十进制和二进制的选择 <em>（ENIAC十进制 vs EDVAC二进制）</em>
+<ul>
+<li>电子管是一种“全或无”设备（all-or-none），适合表示只有两个数值的系统，即二进制</li>
+<li>二进制可以大幅度地简化乘法和除法的运算过程，尤其是对于乘法，不再需要十进制乘法表，也不再需要两轮的加法</li>
+<li>十进制才是适合人使用的，输入输出设备需要承担二进制和十进制之间的转换工作</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>面向硬件的乘法过程调整</p>
+<p><img src="/post/computer-architecture-notes/image-20220504232750588.png"
+	width="1752"
+	height="763"
+	srcset="/post/computer-architecture-notes/image-20220504232750588_hu73cdd8f8205eca34fec6fe1717eb3e53_870221_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/image-20220504232750588_hu73cdd8f8205eca34fec6fe1717eb3e53_870221_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="229"
+		data-flex-basis="551px"
+	
+></p>
+</li>
+</ul>
+<h3 id="42-乘法器的实现">4.2 乘法器的实现</h3>
+<ul>
+<li>
+<p>乘法器的实现结构</p>
+<p><img src="/post/computer-architecture-notes/image-20220504233951010.png"
+	width="1693"
+	height="835"
+	srcset="/post/computer-architecture-notes/image-20220504233951010_hu1c4d274eacb54ec865ca9c86c8d5ad91_304298_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/image-20220504233951010_hu1c4d274eacb54ec865ca9c86c8d5ad91_304298_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="202"
+		data-flex-basis="486px"
+	
+></p>
+</li>
+<li>
+<p>N位乘法器的工作流程</p>
+<p><img src="/post/computer-architecture-notes/image-20220505224447871.png"
+	width="2010"
+	height="966"
+	srcset="/post/computer-architecture-notes/image-20220505224447871_hu951d951b2a701eb9a2c94bc3df0484a3_738948_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/image-20220505224447871_hu951d951b2a701eb9a2c94bc3df0484a3_738948_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="208"
+		data-flex-basis="499px"
+	
+></p>
+</li>
+</ul>
+<h3 id="43-乘法器的优化">4.3 乘法器的优化</h3>
+<ul>
+<li>
+<p>优化速度</p>
+<ul>
+<li>
+<p>问题：加法、左移、右移各1个时钟周期，32位乘法需要约100个时钟周期</p>
+</li>
+<li>
+<p>解决：加法移位并行</p>
+<p><img src="https://s2.loli.net/2022/05/05/XUKvhaF3TY1qinc.png"
+	
+	
+	
+	loading="lazy"
+	
+	
+></p>
+<ul>
+<li>
+<p>时钟上升沿到来之前寄存器内容不会发生变化</p>
+</li>
+<li>
+<p>时钟上升沿到来时寄存器根据输入改变其内容</p>
+</li>
+<li>
+<p>每次循环只需1个周期性能为优化前的三倍</p>
+</li>
+<li>
+<p>进一步优化：中间结果的并行计算</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>减少不必要的硬件资源</p>
+<ul>
+<li>
+<p>问题</p>
+<ul>
+<li>“被乘数寄存器”是8位宽，但其中有效数字始终只有4位</li>
+<li>“乘数寄存器”是4位宽，但其中有效数字每周期减少1位</li>
+<li>“乘积寄存器”是8位宽，但初始时有效数字只有4位，而且每周期增加1位</li>
+<li>“加法器”是8位宽，但参与运算的有效数字实际只有4位</li>
+</ul>
+</li>
+<li>
+<p>解决</p>
+<p><img src="/post/computer-architecture-notes/9pgUDlv7jcniCey.png"
+	width="1180"
+	height="835"
+	srcset="/post/computer-architecture-notes/9pgUDlv7jcniCey_hu2f6f555997376da3254817ced3f62cef_354347_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/9pgUDlv7jcniCey_hu2f6f555997376da3254817ced3f62cef_354347_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="141"
+		data-flex-basis="339px"
+	
+></p>
+<ol>
+<li>“被乘数寄存器”缩减为4位而且取消左移功能</li>
+<li>“乘积寄存器”增加右移功能，乘积初始值置于其中高4位，随看运算过程不断右移（以对齐“被乘数寄存器”）</li>
+<li>加法器缩减为4位宽，“乘积寄存器”只有高4位参与运算</li>
+<li>取消“乘数寄存器”，乘数初始置于“乘积寄存器”低4位</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>N位乘法器的实现结构</p>
+<p><img src="/post/computer-architecture-notes/2Mvl5DOQAszq98g.png"
+	width="1180"
+	height="835"
+	srcset="/post/computer-architecture-notes/2Mvl5DOQAszq98g_hud7bfc4634a42177d988db81bb66437c5_243739_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/2Mvl5DOQAszq98g_hud7bfc4634a42177d988db81bb66437c5_243739_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="141"
+		data-flex-basis="339px"
+	
+></p>
+</li>
+</ul>
+<h3 id="44-除法的运算过程">4.4 除法的运算过程</h3>
+<ul>
+<li>
+<p>手算的十进制除法</p>
+<p><img src="/post/computer-architecture-notes/N3OZjrV69dzWCBe.png"
+	width="1668"
+	height="923"
+	srcset="/post/computer-architecture-notes/N3OZjrV69dzWCBe_hu86a56e27d16e1ebbddb653a82c894d47_467033_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/N3OZjrV69dzWCBe_hu86a56e27d16e1ebbddb653a82c894d47_467033_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="180"
+		data-flex-basis="433px"
+	
+></p>
+</li>
+<li>
+<p>硬件实现得到二进制除法</p>
+<p><img src="/post/computer-architecture-notes/jkYIe1Gxb4JwVBn.png"
+	width="1491"
+	height="1007"
+	srcset="/post/computer-architecture-notes/jkYIe1Gxb4JwVBn_hu5afe937cac3b94ff1562aa80f9760601_1086724_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/jkYIe1Gxb4JwVBn_hu5afe937cac3b94ff1562aa80f9760601_1086724_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="148"
+		data-flex-basis="355px"
+	
+></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">十进制</th>
+<th style="text-align:right">二进制</th>
+<th style="text-align:center">位宽</th>
+<th>注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><strong>被除数</strong></td>
+<td style="text-align:center">7</td>
+<td style="text-align:right">00000111</td>
+<td style="text-align:center">8-bit</td>
+<td>可以视为初始时的余数</td>
+</tr>
+<tr>
+<td style="text-align:center">除数</td>
+<td style="text-align:center">2</td>
+<td style="text-align:right">0010</td>
+<td style="text-align:center">4-bit</td>
+<td>可视为不断右移，并和被除数相减</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>余数</strong></td>
+<td style="text-align:center">1</td>
+<td style="text-align:right">00000001</td>
+<td style="text-align:center">8-bit</td>
+<td>可与被除数共享一个寄存器</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>商</strong></td>
+<td style="text-align:center">3</td>
+<td style="text-align:right">0011</td>
+<td style="text-align:center">4-bit</td>
+<td>每个bit依次生成，可视为不断左移</td>
+</tr>
+</tbody>
+</table></div>
+</li>
+</ul>
+<h3 id="45-除法器的实现">4.5 除法器的实现</h3>
+<ul>
+<li>
+<p>32-bit除法器的工作流程</p>
+<p><img src="/post/computer-architecture-notes/image-20220506105636040.png"
+	width="1988"
+	height="1025"
+	srcset="/post/computer-architecture-notes/image-20220506105636040_hu1806b6eb21e9e4910f4768b5d9de9217_765066_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/image-20220506105636040_hu1806b6eb21e9e4910f4768b5d9de9217_765066_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="193"
+		data-flex-basis="465px"
+	
+></p>
+</li>
+<li>
+<p>4-bit除法器的实现</p>
+<p><img src="/post/computer-architecture-notes/image-20220506105941093.png"
+	width="1689"
+	height="831"
+	srcset="/post/computer-architecture-notes/image-20220506105941093_hu3874a262f352777d8640154398f21a64_299205_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/image-20220506105941093_hu3874a262f352777d8640154398f21a64_299205_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="203"
+		data-flex-basis="487px"
+	
+></p>
+<ul>
+<li>一个8-bit的“余数”寄存器</li>
+<li>一个8-bit的“除数”寄存器，带右移功能</li>
+<li>一个4-bit的“商”寄存器，带左移功能</li>
+<li>一个8-bit的ALU，支持加法和减法运算</li>
+<li>工作过程：$0010_{two}\sqrt{00000111_{two}}$
+<ul>
+<li>初始化
+<ol>
+<li>将8-bit被除数放入“余数”寄存器</li>
+<li>将4-bit除数放入“除数”寄存器的高4-bit</li>
+<li>将4-bit“商”寄存器置为零</li>
+</ol>
+</li>
+<li>执行减法运算：$余数寄存器-除数寄存器$，运算结果保存到余数寄存器中</li>
+<li>检查余数寄存器
+<ul>
+<li>如果值大于或等于零，执行2a操作
+<ul>
+<li>商左移1位，最右位设为1</li>
+</ul>
+</li>
+<li>如果值小于零，执行2b操作
+<ul>
+<li>首先回退第1步的操作，即执行加法运算：$余数寄存器+除数寄存器$，运算结果保存到余数寄存器；然后商左移1位，新的最右位设为0</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>除数寄存器右移1位</li>
+<li>检查是否是最后一轮循环</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>余留问题</p>
+<ul>
+<li>正数和负数相除时，商应该是正数还是负数？余数呢？</li>
+</ul>
+</li>
+</ul>
+<h3 id="46-除法器的优化">4.6 除法器的优化</h3>
+<ul>
+<li>
+<p>面积优化</p>
+<ul>
+<li>
+<p>问题</p>
+<ul>
+<li>除数寄存器实际只用了一半</li>
+<li>商寄存器初始时是空的，从右到左逐位填满</li>
+<li>余数寄存器初始时是满的，有实际意义的位从左到右逐渐减少</li>
+</ul>
+</li>
+<li>
+<p>解决</p>
+<p><img src="/post/computer-architecture-notes/FGeg2cJIR1qykz4.png"
+	width="1434"
+	height="781"
+	srcset="/post/computer-architecture-notes/FGeg2cJIR1qykz4_huc409e5774123fdd8987bd373e47b1883_285953_480x0_resize_box_3.png 480w, /post/computer-architecture-notes/FGeg2cJIR1qykz4_huc409e5774123fdd8987bd373e47b1883_285953_1024x0_resize_box_3.png 1024w"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="183"
+		data-flex-basis="440px"
+	
+></p>
+<ol>
+<li>除数寄存器缩小为32-bit，无需支持移位</li>
+<li>取消商寄存器</li>
+<li>64-bit ALU缩小为32-bit</li>
+<li>余数寄存器只有高32-bit参与加减法运算</li>
+<li>余数寄存器需支持左移和右移</li>
+<li>商从右端逐位移入余数寄存器</li>
+<li>运算结束时，商占据余数寄存器的低32-bit</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>性能优化</p>
+<ul>
+<li>问题
+<ul>
+<li>检查分支：乘法器的分支可以用在每轮开始时将“乘数寄存器”的最低位和“被乘数寄存器”进行与操作，然后和“乘积寄存器”相加代替；除法的分支必须根据减法的结果决定下一步操作，无法并行</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="第五讲--单周期处理器single-cycle-processor">第五讲  单周期处理器（Single Cycle Processor）</h2>
 <p>内容要点：控制器，数据通路</p>
 <h2 id="第六讲--流水线处理器pipelined-processor">第六讲  流水线处理器（Pipelined Processor）</h2>
@@ -3486,7 +3843,7 @@ if (!doNotTrack) {
 
 
         <span>
-            Last updated on Apr 30, 2022 15:26 CST
+            Last updated on May 06, 2022 14:10 CST
         </span>
     </section></footer>
 
@@ -3775,6 +4132,11 @@ if (!doNotTrack) {
     <li><a href="#第四讲--乘法器和除法器multiplier-and-divider">第四讲  乘法器和除法器（Multiplier and Divider）</a>
       <ol>
         <li><a href="#41-乘法的运算过程">4.1 乘法的运算过程</a></li>
+        <li><a href="#42-乘法器的实现">4.2 乘法器的实现</a></li>
+        <li><a href="#43-乘法器的优化">4.3 乘法器的优化</a></li>
+        <li><a href="#44-除法的运算过程">4.4 除法的运算过程</a></li>
+        <li><a href="#45-除法器的实现">4.5 除法器的实现</a></li>
+        <li><a href="#46-除法器的优化">4.6 除法器的优化</a></li>
       </ol>
     </li>
     <li><a href="#第五讲--单周期处理器single-cycle-processor">第五讲  单周期处理器（Single Cycle Processor）</a></li>
